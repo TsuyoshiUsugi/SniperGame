@@ -13,11 +13,13 @@ public class Rifle : MonoBehaviour
 
     [SerializeField] GameObject _muzzle;
 
+    [SerializeField] float _angle;
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            var bulletRb = Instantiate(_bullet, _muzzle.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            var bulletRb = Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation).GetComponent<Rigidbody>();
 
             bulletRb.AddForce(Camera.main.transform.forward * _speed, ForceMode.Impulse);
         }

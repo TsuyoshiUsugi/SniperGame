@@ -13,17 +13,22 @@ public class TestPlayer : MonoBehaviour
     [SerializeField] float _speed;
     [SerializeField] Rigidbody _rb;
     [SerializeField] GameObject _eye;
+    [SerializeField] CinemachineVirtualCamera _playerCam;
+    [SerializeField] int _zoomPriority;
+    [SerializeField] int _originPriority;
 
     // Update is called once per frame
     void Update()
     {
         ReadInput();
 
-        Rotate();
+        Zoom();
     }
 
     private void FixedUpdate()
     {
+        Rotate();
+
         Move();
     }
 
@@ -58,5 +63,17 @@ public class TestPlayer : MonoBehaviour
         var verticalRotation = Quaternion.AngleAxis(_verticalCam.Value, Vector3.right);
         this.transform.rotation = horizontalRotation;
         _eye.transform.localRotation = verticalRotation;
+    }
+
+    void Zoom()
+    {
+        if(Input.GetKey(KeyCode.Mouse1))
+        {
+            _playerCam.Priority = _zoomPriority;
+        }
+        else
+        {
+            _playerCam.Priority = _originPriority;
+        }
     }
 }
