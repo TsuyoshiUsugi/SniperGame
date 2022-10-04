@@ -33,7 +33,8 @@ public class Bullet : MonoBehaviour
     {
         Vector3 rayPosition = _previous;
         var dir = _current - _previous;
-        Ray ray = new Ray(rayPosition, dir);
+        Ray ray = new Ray(rayPosition, dir.normalized);
+        Debug.DrawRay(ray.origin, dir.normalized, Color.red, 10, false);
 
         //ìGÇ…è’ìÀÇµÇΩÇ∆Ç´ÇÃèàóù
         RaycastHit hit;
@@ -43,9 +44,11 @@ public class Bullet : MonoBehaviour
             {
                 Debug.Log("Hit");
                 hit.collider.GetComponent<Renderer>().material.color = Color.red;
-                Destroy(this.gameObject);
 
             }
+
+            Debug.Log(hit.collider.tag);
+            Destroy(this.gameObject);
         }
     }
 }

@@ -21,7 +21,7 @@ public class Rifle : MonoBehaviour
         {
             var bulletRb = Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation).GetComponent<Rigidbody>();
 
-            bulletRb.AddForce(Camera.main.transform.forward * _speed, ForceMode.Impulse);
+            bulletRb.AddForce(this.gameObject.transform.forward * _speed, ForceMode.Impulse);
         }
     }
 }
