@@ -23,12 +23,12 @@ public class TestPlayer : MonoBehaviour
         ReadInput();
 
         Zoom();
+
+        Rotate();
     }
 
     private void FixedUpdate()
     {
-        Rotate();
-
         Move();
     }
 
@@ -51,7 +51,7 @@ public class TestPlayer : MonoBehaviour
     {
         Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
         Vector3 moveForward = cameraForward * _vertical + Camera.main.transform.right * _horizontal;
-        _rb.velocity = moveForward * _speed + new Vector3(0, _rb.velocity.y, 0);
+        _rb.velocity = (moveForward * _speed + new Vector3(0, _rb.velocity.y, 0));
     }
 
     /// <summary>
