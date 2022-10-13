@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using PlayFab;
+using PlayFab.ClientModels;
 using UnityEngine;
-
 public class PlayFabController : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        PlayFabClientAPI.LoginWithCustomID(new LoginWithCustomIDRequest 
+        { 
+            CustomId = "GettingStartedGuide",
+            CreateAccount = true 
+        }
+        , result => 
+        { 
+            Debug.Log(" Ç®ÇﬂÇ≈Ç∆Ç§ Ç≤Ç¥Ç¢ Ç‹Ç∑ÅI ÉçÉOÉCÉì ê¨å˜ Ç≈Ç∑ÅI"); 
+        }
+        , error => 
+        { 
+            Debug.Log(" ÉçÉOÉCÉì é∏îs...(ÅLÅG É÷ÅGÅM)"); 
+        });
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
     }
 }
+
+
+
+      
