@@ -25,6 +25,8 @@ public class TestPlayer : MonoBehaviour
         Zoom();
 
         Rotate();
+
+        
     }
 
     private void FixedUpdate()
@@ -49,8 +51,9 @@ public class TestPlayer : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-        Vector3 moveForward = cameraForward * _vertical + Camera.main.transform.right * _horizontal;
+        Vector3 cameraForward = Vector3.Scale(transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 cameraRight = Vector3.Scale(transform.right, new Vector3(1, 0, 1)).normalized;
+        Vector3 moveForward = cameraForward * _vertical + cameraRight * _horizontal;
         _rb.velocity = (moveForward * _speed + new Vector3(0, _rb.velocity.y, 0));
     }
 
@@ -59,10 +62,8 @@ public class TestPlayer : MonoBehaviour
     /// </summary>
     void Rotate()
     {
-        var horizontalRotation = Quaternion.AngleAxis(_horizontalCam.Value, Vector3.up);
-        var verticalRotation = Quaternion.AngleAxis(_verticalCam.Value, Vector3.right);
-        this.transform.rotation = horizontalRotation;
-        _eye.transform.localRotation = verticalRotation;
+        this.transform.rotation = Quaternion.AngleAxis(_horizontalCam.Value, Vector3.up);
+        _eye.transform.localRotation = Quaternion.AngleAxis(_verticalCam.Value, Vector3.right);
     }
 
     void Zoom()
