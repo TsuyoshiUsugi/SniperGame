@@ -53,6 +53,15 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""85928cb5-8d73-42b4-8473-8f7e336c447c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -275,6 +284,28 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eca90e7e-44a7-4227-a3d5-418ed4bb9600"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""945fc7f6-9f16-46a9-b91c-9cc6a8ae5090"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -368,6 +399,15 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                     ""type"": ""PassThrough"",
                     ""id"": ""2e8a31d2-2408-4637-880f-1ed8d045f389"",
                     ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyButtonDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad89b7bc-97db-4bb3-b105-291b3c91b2c0"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -791,6 +831,28 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65a74b57-8d32-4763-825b-92ce9afef25e"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyButtonDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75cb2883-f187-4197-8da6-86795a1808b7"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyButtonDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -863,6 +925,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_AnyButton = m_Player.FindAction("AnyButton", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -875,6 +938,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_AnyButtonDown = m_UI.FindAction("AnyButtonDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -937,6 +1001,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_AnyButton;
     public struct PlayerActions
     {
         private @SniperGameInputAction m_Wrapper;
@@ -944,6 +1009,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @AnyButton => m_Wrapper.m_Player_AnyButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -962,6 +1028,9 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @AnyButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyButton;
+                @AnyButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyButton;
+                @AnyButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyButton;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -975,6 +1044,9 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @AnyButton.started += instance.OnAnyButton;
+                @AnyButton.performed += instance.OnAnyButton;
+                @AnyButton.canceled += instance.OnAnyButton;
             }
         }
     }
@@ -993,6 +1065,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_AnyButtonDown;
     public struct UIActions
     {
         private @SniperGameInputAction m_Wrapper;
@@ -1007,6 +1080,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputAction @AnyButtonDown => m_Wrapper.m_UI_AnyButtonDown;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1046,6 +1120,9 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                 @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                @AnyButtonDown.started -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyButtonDown;
+                @AnyButtonDown.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyButtonDown;
+                @AnyButtonDown.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyButtonDown;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1080,6 +1157,9 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                 @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                @AnyButtonDown.started += instance.OnAnyButtonDown;
+                @AnyButtonDown.performed += instance.OnAnyButtonDown;
+                @AnyButtonDown.canceled += instance.OnAnyButtonDown;
             }
         }
     }
@@ -1134,6 +1214,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnAnyButton(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1147,5 +1228,6 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnAnyButtonDown(InputAction.CallbackContext context);
     }
 }

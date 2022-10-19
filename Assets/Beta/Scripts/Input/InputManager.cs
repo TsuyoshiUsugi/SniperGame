@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class InputManager : SingletonMonobehavior<InputManager>
 {
-    SniperGameInputAction _testInputActions;
+    SniperGameInputAction _inputActions;
 
 
     protected override void Awake()
@@ -16,8 +16,12 @@ public class InputManager : SingletonMonobehavior<InputManager>
         base.Awake();
         DontDestroyOnLoad(gameObject);
 
-        _testInputActions = new SniperGameInputAction();
-        _testInputActions.Enable();
+        _inputActions = new SniperGameInputAction();
+        _inputActions.Enable();
+
+        //ここからイベント登録
+        _inputActions.UI.AnyButtonDown.performed += context => OnAnyButtonDown();
+
     }
     void Start()
     {
@@ -28,5 +32,13 @@ public class InputManager : SingletonMonobehavior<InputManager>
     void Update()
     {
         
+    }
+
+    /// <summary>
+    /// いずれかのボタンが押されたときに行う
+    /// </summary>
+    void OnAnyButtonDown()
+    {
+        Debug.Log("ボタンが押された");
     }
 }
