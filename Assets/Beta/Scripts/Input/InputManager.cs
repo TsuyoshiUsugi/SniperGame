@@ -21,7 +21,7 @@ public class InputManager : SingletonMonobehavior<InputManager>
         _inputActions.Enable();
 
         //‚±‚±‚©‚çƒCƒxƒ“ƒg“o˜^
-        _inputActions.UI.AnyButtonDown.performed += _anyButtonDown(;
+       // _inputActions.UI.AnyButtonDown.performed += _anyButtonDown(;
 
     }
     void Start()
