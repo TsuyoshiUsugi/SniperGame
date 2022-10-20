@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 /// <summary>
 /// 入力を読み取るマネージャーコンポーネント
@@ -10,6 +9,8 @@ public class InputManager : SingletonMonobehavior<InputManager>
 {
     SniperGameInputAction _inputActions;
 
+    private readonly ReactiveProperty<Unit> _anyButtonDown = new();
+    public IReadOnlyReactiveProperty<Unit> AnyButtonDown => _anyButtonDown;
 
     protected override void Awake()
     {
@@ -20,7 +21,7 @@ public class InputManager : SingletonMonobehavior<InputManager>
         _inputActions.Enable();
 
         //ここからイベント登録
-        _inputActions.UI.AnyButtonDown.performed += context => OnAnyButtonDown();
+        _inputActions.UI.AnyButtonDown.performed += _anyButtonDown(;
 
     }
     void Start()

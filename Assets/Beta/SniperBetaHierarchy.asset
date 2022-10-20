@@ -12,4 +12,136 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad77a21276d6e840aa30a46a6c921fa, type: 3}
   m_Name: SniperBetaHierarchy
   m_EditorClassIdentifier: 
-  Dividers: []
+  Dividers:
+  - Name: ==Manager==
+    ID: 0
+    PreSuffix: 
+    PreSuffixCount: 0
+    Label: ' ==Manager== '
+    BoldFont: 0
+    ItalicFont: 0
+    ColoredFont: 1
+    ColoredBG: 1
+    HasOverrideColor_leftSprite: 0
+    HasOverrideColor_rightSprite: 0
+    FontColor: {r: 1, g: 0, b: 0, a: 1}
+    BGColor: {r: 0.21698111, g: 0.20162867, b: 0.20162867, a: 1}
+    OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
+    OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
+    HasSprite_left: 0
+    HasSprite_right: 0
+    LeftSprite: {fileID: 21300000, guid: 9128195b126414f47804bf51985afa03, type: 3}
+    RightSprite: {fileID: 21300000, guid: 8b852e1be84264870a01204817e88187, type: 3}
+    LeftScale: 1
+    RightScale: 1
+    foldOut: 0
+  - Name: ==Camera==
+    ID: 0
+    PreSuffix: 
+    PreSuffixCount: 0
+    Label: ' ==Camera== '
+    BoldFont: 0
+    ItalicFont: 0
+    ColoredFont: 1
+    ColoredBG: 1
+    HasOverrideColor_leftSprite: 0
+    HasOverrideColor_rightSprite: 0
+    FontColor: {r: 0, g: 0.9901037, b: 1, a: 1}
+    BGColor: {r: 0.21698111, g: 0.20162867, b: 0.20162867, a: 1}
+    OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
+    OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
+    HasSprite_left: 0
+    HasSprite_right: 0
+    LeftSprite: {fileID: 21300000, guid: ff8c61bdde6b14a88b817b0a95d43da8, type: 3}
+    RightSprite: {fileID: 21300000, guid: 8b852e1be84264870a01204817e88187, type: 3}
+    LeftScale: 1
+    RightScale: 1
+    foldOut: 0
+  - Name: ==Light==
+    ID: 0
+    PreSuffix: 
+    PreSuffixCount: 0
+    Label: ' ==Light== '
+    BoldFont: 0
+    ItalicFont: 0
+    ColoredFont: 1
+    ColoredBG: 1
+    HasOverrideColor_leftSprite: 0
+    HasOverrideColor_rightSprite: 0
+    FontColor: {r: 0.9519105, g: 1, b: 0, a: 1}
+    BGColor: {r: 0.21698111, g: 0.20162867, b: 0.20162867, a: 1}
+    OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
+    OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
+    HasSprite_left: 0
+    HasSprite_right: 0
+    LeftSprite: {fileID: 21300000, guid: ff8c61bdde6b14a88b817b0a95d43da8, type: 3}
+    RightSprite: {fileID: 21300000, guid: 8b852e1be84264870a01204817e88187, type: 3}
+    LeftScale: 1
+    RightScale: 1
+    foldOut: 0
+  - Name: ==Field==
+    ID: 0
+    PreSuffix: 
+    PreSuffixCount: 0
+    Label: ' ==Field== '
+    BoldFont: 0
+    ItalicFont: 0
+    ColoredFont: 1
+    ColoredBG: 1
+    HasOverrideColor_leftSprite: 0
+    HasOverrideColor_rightSprite: 0
+    FontColor: {r: 0.052928496, g: 0.9245283, b: 0, a: 1}
+    BGColor: {r: 0.21698111, g: 0.20162867, b: 0.20162867, a: 1}
+    OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
+    OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
+    HasSprite_left: 0
+    HasSprite_right: 0
+    LeftSprite: {fileID: 21300000, guid: ff8c61bdde6b14a88b817b0a95d43da8, type: 3}
+    RightSprite: {fileID: 21300000, guid: 8b852e1be84264870a01204817e88187, type: 3}
+    LeftScale: 1
+    RightScale: 1
+    foldOut: 0
+  - Name: ==UI==
+    ID: 0
+    PreSuffix: 
+    PreSuffixCount: 0
+    Label: ' ==UI== '
+    BoldFont: 0
+    ItalicFont: 0
+    ColoredFont: 1
+    ColoredBG: 1
+    HasOverrideColor_leftSprite: 0
+    HasOverrideColor_rightSprite: 0
+    FontColor: {r: 0.051886797, g: 0.24130717, b: 1, a: 1}
+    BGColor: {r: 1, g: 0.80811393, b: 0, a: 1}
+    OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
+    OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
+    HasSprite_left: 0
+    HasSprite_right: 0
+    LeftSprite: {fileID: 21300000, guid: ff8c61bdde6b14a88b817b0a95d43da8, type: 3}
+    RightSprite: {fileID: 21300000, guid: 8b852e1be84264870a01204817e88187, type: 3}
+    LeftScale: 1
+    RightScale: 1
+    foldOut: 0
+  - Name: ==Generate==
+    ID: 0
+    PreSuffix: 
+    PreSuffixCount: 0
+    Label: ' ==Generate== '
+    BoldFont: 0
+    ItalicFont: 0
+    ColoredFont: 1
+    ColoredBG: 1
+    HasOverrideColor_leftSprite: 0
+    HasOverrideColor_rightSprite: 0
+    FontColor: {r: 0.9433962, g: 0.17885427, b: 0, a: 1}
+    BGColor: {r: 0.081016965, g: 0.9716981, b: 0.022917405, a: 1}
+    OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
+    OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
+    HasSprite_left: 0
+    HasSprite_right: 0
+    LeftSprite: {fileID: 21300000, guid: ff8c61bdde6b14a88b817b0a95d43da8, type: 3}
+    RightSprite: {fileID: 21300000, guid: 8b852e1be84264870a01204817e88187, type: 3}
+    LeftScale: 1
+    RightScale: 1
+    foldOut: 0
