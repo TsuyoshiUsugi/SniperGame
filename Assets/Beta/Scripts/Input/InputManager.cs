@@ -1,5 +1,7 @@
+using UnityEngine.Events;
 using UnityEngine;
-using UniRx;
+using System.Collections.Generic;
+using System;
 
 /// <summary>
 /// 入力を読み取るマネージャーコンポーネント
@@ -9,8 +11,8 @@ public class InputManager : SingletonMonobehavior<InputManager>
 {
     SniperGameInputAction _inputActions;
 
-    private readonly ReactiveProperty<Unit> _anyButtonDown = new();
-    public IReadOnlyReactiveProperty<Unit> AnyButtonDown => _anyButtonDown;
+    //外部に公開するイベント一覧
+    public Action OnAnyButtonDownEvent;
 
     protected override void Awake()
     {
@@ -21,25 +23,16 @@ public class InputManager : SingletonMonobehavior<InputManager>
         _inputActions.Enable();
 
         //ここからイベント登録
-       // _inputActions.UI.AnyButtonDown.performed += _anyButtonDown(;
-
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _inputActions.UI.AnyButtonDown.performed += context =>
+        {
+            DebugText();
+            OnAnyButtonDownEvent.Invoke();
+        };
     }
 
-    /// <summary>
-    /// いずれかのボタンが押されたときに行う
-    /// </summary>
-    void OnAnyButtonDown()
+    void DebugText()
     {
-        Debug.Log("ボタンが押された");
+        Debug.Log("ok");
     }
+
 }
