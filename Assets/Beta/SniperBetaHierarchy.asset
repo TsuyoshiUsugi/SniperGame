@@ -24,8 +24,8 @@ MonoBehaviour:
     ColoredBG: 1
     HasOverrideColor_leftSprite: 0
     HasOverrideColor_rightSprite: 0
-    FontColor: {r: 1, g: 0, b: 0, a: 1}
-    BGColor: {r: 0.21698111, g: 0.20162867, b: 0.20162867, a: 1}
+    FontColor: {r: 0, g: 0, b: 0, a: 1}
+    BGColor: {r: 1, g: 0, b: 0, a: 1}
     OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
     OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
     HasSprite_left: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     HasOverrideColor_leftSprite: 0
     HasOverrideColor_rightSprite: 0
     FontColor: {r: 0, g: 0.9901037, b: 1, a: 1}
-    BGColor: {r: 0.21698111, g: 0.20162867, b: 0.20162867, a: 1}
+    BGColor: {r: 0, g: 0.30291796, b: 1, a: 1}
     OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
     OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
     HasSprite_left: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     ColoredBG: 1
     HasOverrideColor_leftSprite: 0
     HasOverrideColor_rightSprite: 0
-    FontColor: {r: 0.9519105, g: 1, b: 0, a: 1}
-    BGColor: {r: 0.21698111, g: 0.20162867, b: 0.20162867, a: 1}
+    FontColor: {r: 0.17879967, g: 0.1792453, b: 0.16977574, a: 1}
+    BGColor: {r: 1, g: 0.6225071, b: 0.088679194, a: 1}
     OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
     OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
     HasSprite_left: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
     HasOverrideColor_leftSprite: 0
     HasOverrideColor_rightSprite: 0
     FontColor: {r: 0.052928496, g: 0.9245283, b: 0, a: 1}
-    BGColor: {r: 0.21698111, g: 0.20162867, b: 0.20162867, a: 1}
+    BGColor: {r: 0.6037736, g: 0.11050192, b: 0.11050192, a: 1}
     OverrideColor_leftSprite: {r: 0, g: 0, b: 0, a: 0}
     OverrideColor_rightSprite: {r: 0, g: 0, b: 0, a: 0}
     HasSprite_left: 0
