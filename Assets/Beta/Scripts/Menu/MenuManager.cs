@@ -20,6 +20,7 @@ public class MenuManager : MonoBehaviour
     public void OnClickedMissionButton()
     {
         SceneManager.LoadScene("MissionTab");
+        Debug.Log("ˆÚs");
     }
 
     /// <summary>
