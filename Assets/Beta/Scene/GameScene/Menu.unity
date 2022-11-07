@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u672A\u5B9A"
+  m_Text: "\u30AC\u30C1\u30E3"
 --- !u!222 &30350988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2130,7 +2130,7 @@ GameObject:
   - component: {fileID: 1124461711}
   - component: {fileID: 1124461710}
   m_Layer: 5
-  m_Name: none
+  m_Name: Gacha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
