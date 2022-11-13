@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// プレイヤーの動きを管理するコンポーネント
+/// プレイヤーの入力を読み取り動かすコンポーネント
 /// </summary>
-public class PlayerManager : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
