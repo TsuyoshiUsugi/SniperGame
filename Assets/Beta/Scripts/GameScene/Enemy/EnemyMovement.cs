@@ -8,9 +8,11 @@ using UnityEngine;
 /// MEMO
 /// ‚Æ‚É‚©‚­“®‚«‚ÌŠÇ—ˆ—‚Ì‚İ‘‚­
 /// </summary>
-public class EnemyMovement : MonoBehaviour, IDeath
+public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] GameSceneManager _gameSceneManager;
+
+    [SerializeField] float _hp = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +26,15 @@ public class EnemyMovement : MonoBehaviour, IDeath
         
     }
 
-    public void Death()
+    public void Hit(float dmg)
     {
-        _gameSceneManager.Clear();
+        _hp -= dmg;
+
+        if (_hp < 0) Death();
+    }
+
+    void Death()
+    {
+         _gameSceneManager.Clear();     
     }
 }
