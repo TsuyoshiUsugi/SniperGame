@@ -62,6 +62,15 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""55ab8503-49e1-4af6-b007-cbc875375619"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -304,6 +313,17 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AnyButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4cfc927-bd6a-4495-9eb8-c70524ee6907"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -926,6 +946,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_AnyButton = m_Player.FindAction("AnyButton", throwIfNotFound: true);
+        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1002,6 +1023,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_AnyButton;
+    private readonly InputAction m_Player_Aim;
     public struct PlayerActions
     {
         private @SniperGameInputAction m_Wrapper;
@@ -1010,6 +1032,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @AnyButton => m_Wrapper.m_Player_AnyButton;
+        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1031,6 +1054,9 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                 @AnyButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyButton;
                 @AnyButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyButton;
                 @AnyButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyButton;
+                @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1047,6 +1073,9 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
                 @AnyButton.started += instance.OnAnyButton;
                 @AnyButton.performed += instance.OnAnyButton;
                 @AnyButton.canceled += instance.OnAnyButton;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -1215,6 +1244,7 @@ public partial class @SniperGameInputAction : IInputActionCollection2, IDisposab
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnAnyButton(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

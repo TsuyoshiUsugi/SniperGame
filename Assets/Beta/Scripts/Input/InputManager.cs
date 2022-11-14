@@ -7,32 +7,27 @@ using System;
 /// 入力を読み取るマネージャーコンポーネント
 /// シーンをまたいでも存在するsingletonクラス
 /// </summary>
-public class InputManager : SingletonMonobehavior<InputManager>
+public class InputManager : MonoBehaviour
 {
     SniperGameInputAction _inputActions;
 
     //外部に公開するイベント一覧
     public Action OnAnyButtonDownEvent;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        DontDestroyOnLoad(gameObject);
+    public Action<Vector2> OnMoveButtonDownEvent;
+    public Action OnFireButtonDownEvent;
+    public Action OnAimButttonDownEvent;
 
+    void Awake()
+    {
         _inputActions = new SniperGameInputAction();
         _inputActions.Enable();
 
         //ここからイベント登録
-        _inputActions.UI.AnyButtonDown.performed += context =>
-        {
-            DebugText();
-            OnAnyButtonDownEvent.Invoke();
-        };
-    }
+        //_inputActions.UI.AnyButtonDown.performed += context => { OnAnyButtonDownEvent.Invoke(); };
 
-    void DebugText()
-    {
-        Debug.Log("ok");
+        _inputActions.Player.Move.performed += context => { OnMoveButtonDownEvent.Invoke(context.ReadValue<Vector2>()); };
+        _inputActions.Player.Fire.performed += context => { OnFireButtonDownEvent.Invoke(); };
+        _inputActions.Player.Aim.performed += context => { OnAimButttonDownEvent.Invoke(); };
     }
-
 }
