@@ -8,12 +8,16 @@ using Cinemachine;
 /// </summary>
 public class PlayerCamController : MonoBehaviour
 {
-    [SerializeField] CinemachineVirtualCamera _playerCam;
-    [SerializeField] AxisState _horizontalCam;
-    [SerializeField] AxisState _verticalCam;
-
+    [SerializeField] InputManager _inputManager;
     [SerializeField] GameObject _eye;
 
+    [SerializeField] float _camSpeed;
+    [SerializeField] Vector2 _camDir;
+    [SerializeField] float _verticalCamMaxAngle;
+    [SerializeField] float _verticalCamMinAngle;
+
+    float _camX = 0;
+    float _camY = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,7 @@ public class PlayerCamController : MonoBehaviour
     void Update()
     {
         
+        Rotate();
     }
 
     /// <summary>
@@ -31,7 +36,11 @@ public class PlayerCamController : MonoBehaviour
     /// </summary>
     void Rotate()
     {
-        this.transform.rotation = Quaternion.AngleAxis(_horizontalCam.Value, Vector3.up);
-        _eye.transform.localRotation = Quaternion.AngleAxis(_verticalCam.Value, Vector3.right);
+        _camDir = _inputManager.CamDir;
+        _camX += _camDir.x * _camSpeed;
+        _camY += _camDir.y * _camSpeed;
+
+        this.transform.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
+        _eye.transform.localRotation = Quaternion.AngleAxis(Mathf.Clamp(_camY, _verticalCamMinAngle, _verticalCamMaxAngle), Vector3.right);
     }
 }

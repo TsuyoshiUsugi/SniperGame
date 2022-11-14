@@ -387,6 +387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputManager: {fileID: 1416031855}
   _rb: {fileID: 48881873}
+  _camera: {fileID: 1158721676}
   _speed: 1
 --- !u!114 &48881878
 MonoBehaviour:
@@ -400,44 +401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab119cc521f38d429e76bf6d3c02f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCam: {fileID: 0}
-  _horizontalCam:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 0
-    m_AccelTime: 0
-    m_DecelTime: 0
-    m_InputAxisName: 
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: 0
-    m_MaxValue: 0
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
-  _verticalCam:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 0
-    m_AccelTime: 0
-    m_DecelTime: 0
-    m_InputAxisName: 
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: 0
-    m_MaxValue: 0
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
+  _inputManager: {fileID: 1416031855}
   _eye: {fileID: 1559144283}
+  _camSpeed: 1
+  _camDir: {x: 0, y: 0}
+  _verticalCamMaxAngle: 90
+  _verticalCamMinAngle: 0
 --- !u!1001 &85489576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4059,7 +4028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerIndex: -1
   AutoEnableInputs: 1
-  XYAxis: {fileID: -3069376089418051980, guid: 56b796bdc2ce42a4b835b0e643f42c03, type: 3}
+  XYAxis: {fileID: 6796402698040669089, guid: 56b796bdc2ce42a4b835b0e643f42c03, type: 3}
   ZAxis: {fileID: 0}
 --- !u!1001 &1162651967
 PrefabInstance:

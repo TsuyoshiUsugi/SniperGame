@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour
 
     public Vector2 MoveDir => _moveDir;
     Vector2 _moveDir;
+    public Vector2 CamDir => _camDir;
+    Vector2 _camDir;
 
     public Action OnFireButtonDownEvent;
     public Action OnAimButttonDownEvent;
@@ -30,6 +32,9 @@ public class InputManager : MonoBehaviour
 
         _inputActions.Player.Move.performed += context =>  { _moveDir = context.ReadValue<Vector2>(); };
         _inputActions.Player.Move.canceled += context =>  { _moveDir = new Vector2(0,0); };
+
+        _inputActions.Player.Look.performed += context => { _camDir = context.ReadValue<Vector2>(); };
+        _inputActions.Player.Look.canceled += context => { _camDir = new Vector2(0, 0); };
 
         _inputActions.Player.Fire.performed += context => { OnFireButtonDownEvent.Invoke(); };
         _inputActions.Player.Aim.performed += context => { OnAimButttonDownEvent.Invoke(); };
