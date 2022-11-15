@@ -8,6 +8,7 @@ public class TestPlayer : MonoBehaviour
     float _horizontal;
     float _vertical;
 
+    [SerializeField] InputManager _input;
     [SerializeField] AxisState _horizontalCam;
     [SerializeField] AxisState _verticalCam;
     [SerializeField] float _speed;
@@ -16,6 +17,8 @@ public class TestPlayer : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera _playerCam;
     [SerializeField] int _zoomPriority;
     [SerializeField] int _originPriority;
+
+    [SerializeField] Vector2 _camDir;
 
     // Update is called once per frame
     void Update()
@@ -26,7 +29,6 @@ public class TestPlayer : MonoBehaviour
 
         Rotate();
 
-        
     }
 
     private void FixedUpdate()
@@ -42,8 +44,14 @@ public class TestPlayer : MonoBehaviour
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
 
-        _horizontalCam.Update(Time.deltaTime);
-        _verticalCam.Update(Time.deltaTime);
+        _horizontalCam.Update(Time.time);
+        _verticalCam.Update(Time.time);
+
+        _camDir = _input.CamDir;
+        _camDir = new Vector2(Mathf.Clamp(_camDir.x, -1, 1), Mathf.Clamp(_camDir.y, -1, 1));
+        _horizontalCam.m_InputAxisValue = _camDir.x;
+        _verticalCam.m_InputAxisValue = _camDir.y;
+
     }
 
     /// <summary>

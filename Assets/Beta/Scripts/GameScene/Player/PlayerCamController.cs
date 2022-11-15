@@ -13,17 +13,9 @@ public class PlayerCamController : MonoBehaviour
 
     [SerializeField] float _camSpeed;
     [SerializeField] Vector2 _camDir;
-    [SerializeField] float _verticalCamMaxAngle;
-    [SerializeField] float _verticalCamMinAngle;
 
     float _camX = 0;
     float _camY = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -50,8 +42,6 @@ public class PlayerCamController : MonoBehaviour
         _camY += _camDir.y * _camSpeed;
 
         this.transform.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
-        _eye.transform.localRotation = Quaternion.AngleAxis(Mathf.Clamp(_camY, _verticalCamMinAngle, _verticalCamMaxAngle), Vector3.right);
+        _eye.transform.localRotation = Quaternion.AngleAxis(_camY, Vector3.right);
     }
-
-    
 }

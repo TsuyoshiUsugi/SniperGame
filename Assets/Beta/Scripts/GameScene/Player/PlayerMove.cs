@@ -28,6 +28,8 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         Move(_inputManager.MoveDir);
+
+        Rotate();
     }
 
     void Move(Vector2 input)
@@ -40,5 +42,10 @@ public class PlayerMove : MonoBehaviour
                 Camera.main.transform.right * horizontal;
 
         _rb.velocity = dir * _speed + new Vector3(0, _rb.velocity.y, 0f);
+    }
+
+    void Rotate()
+    {
+        this.transform.rotation = Quaternion.Euler(0, _camera.transform.eulerAngles.y, 0);
     }
 }
