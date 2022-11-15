@@ -405,8 +405,8 @@ MonoBehaviour:
   _eye: {fileID: 1559144283}
   _camSpeed: 1
   _camDir: {x: 0, y: 0}
-  _verticalCamMaxAngle: 90
-  _verticalCamMinAngle: 0
+  _verticalCamMaxAngle: 45
+  _verticalCamMinAngle: -45
 --- !u!1001 &85489576
 PrefabInstance:
   m_ObjectHideFlags: 0

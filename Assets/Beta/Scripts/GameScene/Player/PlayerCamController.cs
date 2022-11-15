@@ -27,8 +27,18 @@ public class PlayerCamController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ReadInput();
+
         Rotate();
+    }
+
+    /// <summary>
+    /// “ü—Í‚ð“Ç‚ÝŽæ‚é
+    /// </summary>
+    private void ReadInput()
+    {
+        _camDir = _inputManager.CamDir;
+        _camDir = new Vector2(Mathf.Clamp(_camDir.x, -1, 1), Mathf.Clamp(_camDir.y, -1, 1));
     }
 
     /// <summary>
@@ -36,11 +46,12 @@ public class PlayerCamController : MonoBehaviour
     /// </summary>
     void Rotate()
     {
-        _camDir = _inputManager.CamDir;
         _camX += _camDir.x * _camSpeed;
         _camY += _camDir.y * _camSpeed;
 
         this.transform.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
         _eye.transform.localRotation = Quaternion.AngleAxis(Mathf.Clamp(_camY, _verticalCamMinAngle, _verticalCamMaxAngle), Vector3.right);
     }
+
+    
 }
