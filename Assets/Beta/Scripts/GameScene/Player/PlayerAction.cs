@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// UIの表示を管理する
+/// プレイヤーの入力による行動を行うコンポーネント
+/// 
+/// 機能
+/// ・射撃
+/// ・
 /// </summary>
-public class GameUIManager : MonoBehaviour
+public class PlayerAction : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        
     }
 
     // Update is called once per frame
