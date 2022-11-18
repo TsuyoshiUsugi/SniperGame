@@ -20,8 +20,9 @@ public class PlayerCamController : MonoBehaviour
     [SerializeField, Tooltip("カメラを繊細に動かす為の値。マウス入力の値をこの値で割る")] float _camDetailSensitivity;
     [SerializeField] float _maxVerticalAngle;
     [SerializeField] float _minVerticalAngle;
-    Quaternion _quaternionMaxAngle;
-    Quaternion _quaternionMinAngle;
+    Quaternion _quaternionYMaxAngle;
+    Quaternion _quaternionYMinAngle;
+    Quaternion _quaternionXMaxAngle;
 
     [Header("確認用フィールド")]
     [SerializeField] Vector2 _camDir;
@@ -70,8 +71,9 @@ public class PlayerCamController : MonoBehaviour
     /// </summary>
     private void EulerToQuaternion()
     {
-        _quaternionMaxAngle = Quaternion.Euler(_maxVerticalAngle, 0, 0);
-        _quaternionMinAngle = Quaternion.Euler(_minVerticalAngle, 0, 0);
+        _quaternionYMaxAngle = Quaternion.Euler(_maxVerticalAngle, 0, 0);
+        _quaternionYMinAngle = Quaternion.Euler(_minVerticalAngle, 0, 0);
+        _quaternionXMaxAngle = Quaternion.Euler(0, 360, 0);
     }
 
     
@@ -84,6 +86,15 @@ public class PlayerCamController : MonoBehaviour
     private void FixedUpdate()
     {
         Rotate();
+
+        if(_camX > 360)
+        {
+            _camX = 0;
+        }
+        else if(_camX < 0)
+        {
+            _camX = 360;
+        }
     }
 
     /// <summary>
@@ -113,16 +124,17 @@ public class PlayerCamController : MonoBehaviour
         void RorateAngleLimit()
         {
             //縦
-            if (_eye.transform.localRotation.x > _quaternionMaxAngle.x)
+            if (_eye.transform.localRotation.x > _quaternionYMaxAngle.x)
             {
-                _eye.transform.localRotation = _quaternionMaxAngle;
+                _eye.transform.localRotation = _quaternionYMaxAngle;
                 _camY = _maxVerticalAngle;
             }
-            else if (_eye.transform.localRotation.x < _quaternionMinAngle.x)
+            else if (_eye.transform.localRotation.x < _quaternionYMinAngle.x)
             {
-                _eye.transform.localRotation = _quaternionMinAngle;
+                _eye.transform.localRotation = _quaternionYMinAngle;
                 _camY = _minVerticalAngle;
             }
+
         }
     }
 }
