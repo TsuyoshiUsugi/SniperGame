@@ -92,7 +92,6 @@ public class PlayerCamController : MonoBehaviour
     private void ReadInput()
     {
         _camDir = _inputManager.CamDir;
-        Debug.Log(_camDir);
         _camDir = new Vector2(Mathf.Clamp(_camDir.x, -1, 1), Mathf.Clamp(_camDir.y, -1, 1));
         
     }

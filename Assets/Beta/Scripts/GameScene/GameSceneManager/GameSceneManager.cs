@@ -29,6 +29,7 @@ public class GameSceneManager : MonoBehaviour
     /// </summary>
     public void Clear()
     {
+        Debug.Log("ƒNƒŠƒA");
         SceneManager.LoadScene(_resultSceneName);
     }
 

@@ -1278,7 +1278,7 @@ GameObject:
   - component: {fileID: 3929327873691597030}
   - component: {fileID: 3428594859662116658}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: TempBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1329,6 +1329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9828bc0a9b1e5f45884fbca994d9a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 100
+  _deleteTime: 5
 --- !u!96 &3428594859662116658
 TrailRenderer:
   serializedVersion: 2

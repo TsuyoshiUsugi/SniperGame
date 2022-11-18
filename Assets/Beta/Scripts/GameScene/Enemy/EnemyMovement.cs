@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
     {
         _hp -= dmg;
 
-        if (_hp < 0) Death();
+        if (_hp <= 0) Death();
     }
 
     void Death()

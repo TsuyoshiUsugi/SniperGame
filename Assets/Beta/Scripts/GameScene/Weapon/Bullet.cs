@@ -9,10 +9,11 @@ using UnityEngine;
 /// </summary>
 public class Bullet : MonoBehaviour
 {
+    [Header("ê›íËíl")]
+    [SerializeField] float _damage;
+    [SerializeField] float _deleteTime = 5;
     Vector3 _current;
     Vector3 _previous;
-
-    float _deleteTime = 5;
 
     private void Start()
     {
@@ -54,11 +55,7 @@ public class Bullet : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, dir.magnitude))
         {
-            if (hit.collider.tag == "Target")
-            {
-                Debug.Log("Hit");
-                hit.collider.GetComponent<Renderer>().material.color = Color.red;
-            }
+            hit.collider.GetComponent<EnemyMovement>()?.Hit(_damage);
             Destroy(this.gameObject);
         }
     }
