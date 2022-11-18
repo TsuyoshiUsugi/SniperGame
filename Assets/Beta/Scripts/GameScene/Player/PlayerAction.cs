@@ -12,26 +12,20 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
     [SerializeField] InputManager _inputManager;
+    [SerializeField] GameObject _holdItem;
 
     private void Awake()
     {
-        _inputManager.OnFireButttonDownEvent += () => Shot();
+        _inputManager.OnFireButttonDownEvent += () => Use();
     }
 
-    void Shot()
+    /// <summary>
+    /// 手に持っているアイテムを使用する
+    /// </summary>
+    void Use()
     {
-
+        if (!_holdItem) return;
+        _holdItem?.GetComponent<IUse>().Use();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
