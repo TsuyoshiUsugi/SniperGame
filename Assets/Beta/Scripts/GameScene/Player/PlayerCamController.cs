@@ -92,6 +92,7 @@ public class PlayerCamController : MonoBehaviour
     private void ReadInput()
     {
         _camDir = _inputManager.CamDir;
+        Debug.Log(_camDir);
         _camDir = new Vector2(Mathf.Clamp(_camDir.x, -1, 1), Mathf.Clamp(_camDir.y, -1, 1));
         
     }
@@ -106,12 +107,13 @@ public class PlayerCamController : MonoBehaviour
 
         this.transform.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
         _eye.transform.localRotation = Quaternion.AngleAxis(_camY, Vector3.right);
-
+        
         RorateAngleLimit();
 
         //Šp“x‚ð§ŒÀ‚·‚é
         void RorateAngleLimit()
         {
+            //c
             if (_eye.transform.localRotation.x > _quaternionMaxAngle.x)
             {
                 _eye.transform.localRotation = _quaternionMaxAngle;

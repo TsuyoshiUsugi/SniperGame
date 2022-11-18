@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Beta/Scene/Title/Title.unity
     guid: 7a99c77324f646d418dbdaf7215db1ef
-  - enabled: 1
+  - enabled: 0
     path: Assets/Beta/Scene/GameScene/Menu.unity
     guid: d35fb395e5d4dd74d981b4cb38ac2f7f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Beta/Scene/GameScene/MissionTab.unity
     guid: f5885360759cfc14cae0c994a556d3fa
+  - enabled: 1
+    path: Assets/Beta/Scene/GameScene/GameScene01.unity
+    guid: 5cdf62dc6cfdaf140831b0063e1a33a8
   m_configObjects: {}

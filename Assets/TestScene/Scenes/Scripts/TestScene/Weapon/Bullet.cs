@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 弾丸の挙動用のコンポーネント
+/// 当たるか時間で消滅する
+/// 
+/// </summary>
 public class Bullet : MonoBehaviour
 {
     Vector3 _current;
@@ -9,21 +14,30 @@ public class Bullet : MonoBehaviour
 
     float _deleteTime = 5;
 
+    private void Start()
+    {
+        _current = transform.position;
+        _previous = transform.position;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (_current != null)
-        {
-            _previous = _current;
-        }
-
         _current = transform.position;
-
         Hit();
+        _previous = _current;
 
+        DeleteTimer();
+    }
+
+    /// <summary>
+    /// 消滅するまでの時間を計測する
+    /// </summary>
+    private void DeleteTimer()
+    {
         _deleteTime -= Time.deltaTime;
 
-        if(_deleteTime < 0)
+        if (_deleteTime < 0)
         {
             Destroy(this.gameObject);
         }
@@ -44,10 +58,7 @@ public class Bullet : MonoBehaviour
             {
                 Debug.Log("Hit");
                 hit.collider.GetComponent<Renderer>().material.color = Color.red;
-
             }
-
-            Debug.Log(hit.collider.tag);
             Destroy(this.gameObject);
         }
     }
