@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System.Linq;
 
 /// <summary>
 /// プレイヤーのカメラを操作するコンポーネント
@@ -11,6 +12,8 @@ public class PlayerCamController : MonoBehaviour
     [Header("参照")]
     [SerializeField] InputManager _inputManager;
     [SerializeField] GameObject _eye;
+    [SerializeField] CinemachineVirtualCamera _playerCam;
+    [SerializeField] CinemachineVirtualCamera _scopeCam;
 
     [Header("設定値")]
     [SerializeField] float _camSpeed;
@@ -25,16 +28,40 @@ public class PlayerCamController : MonoBehaviour
     [SerializeField] float _camX = 0;
     [SerializeField] float _camY = 0;
 
+    private void Awake()
+    {
+        InitializeCamPriority();
+    }
+
+    /// <summary>
+    /// カメラの優先度の初期化
+    /// 通常時のカメラのPriorityを１にする
+    /// </summary>
+    private void InitializeCamPriority()
+    {
+        _scopeCam.Priority = 0;
+        _playerCam.Priority = 1;
+    }
 
     private void Start()
     {
         EulerToQuaternion();
 
-        _inputManager.OnAimButttonDownEvent += () => Aim();
+        _inputManager.OnAimButtonDownEvent += isPressed => Aim(isPressed);
     }
 
-    void Aim()
+    void Aim(bool isPressed)
     {
+        if (isPressed)
+        {
+            _scopeCam.Priority = 1;
+            _playerCam.Priority = 0;
+        } 
+        else if(!isPressed)
+        {
+            _scopeCam.Priority = 0;
+            _playerCam.Priority = 1;
+        }
 
     }
 
@@ -66,6 +93,7 @@ public class PlayerCamController : MonoBehaviour
     {
         _camDir = _inputManager.CamDir;
         _camDir = new Vector2(Mathf.Clamp(_camDir.x, -1, 1), Mathf.Clamp(_camDir.y, -1, 1));
+        
     }
 
     /// <summary>
@@ -73,8 +101,8 @@ public class PlayerCamController : MonoBehaviour
     /// </summary>
     void Rotate()
     {
-        _camX += _camDir.x * _camSpeed / _camDetailSensitivity;
-        _camY -= _camDir.y * _camSpeed / _camDetailSensitivity;
+        _camX += (_camDir.x / _camDetailSensitivity) * _camSpeed;
+        _camY -= (_camDir.y / _camDetailSensitivity) * _camSpeed;
 
         this.transform.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
         _eye.transform.localRotation = Quaternion.AngleAxis(_camY, Vector3.right);

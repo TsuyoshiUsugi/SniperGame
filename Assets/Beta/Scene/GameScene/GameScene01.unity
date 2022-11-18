@@ -403,8 +403,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputManager: {fileID: 1416031855}
   _eye: {fileID: 1559144283}
-  _camSpeed: 200
-  _camDetailSensitivity: 500
+  _playerCam: {fileID: 1138781425}
+  _scopeCam: {fileID: 3291377000528521084}
+  _camSpeed: 1000
+  _camDetailSensitivity: 1000
   _maxVerticalAngle: 30
   _minVerticalAngle: -30
   _camDir: {x: 0, y: 0}

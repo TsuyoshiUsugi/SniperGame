@@ -11,6 +11,18 @@ using UnityEngine;
 /// </summary>
 public class PlayerAction : MonoBehaviour
 {
+    [SerializeField] InputManager _inputManager;
+
+    private void Awake()
+    {
+        _inputManager.OnFireButttonDownEvent += () => Shot();
+    }
+
+    void Shot()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
