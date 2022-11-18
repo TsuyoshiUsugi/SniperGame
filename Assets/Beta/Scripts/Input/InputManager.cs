@@ -5,7 +5,6 @@ using System;
 
 /// <summary>
 /// 入力を読み取るマネージャーコンポーネント
-/// シーンをまたいでも存在するsingletonクラス
 /// </summary>
 public class InputManager : MonoBehaviour
 {
@@ -13,14 +12,13 @@ public class InputManager : MonoBehaviour
 
     //外部に公開するイベント一覧
     public Action OnAnyButtonDownEvent;
+    public Action OnFireButtonDownEvent;
+    public Action OnAimButttonDownEvent;
 
     public Vector2 MoveDir => _moveDir;
     Vector2 _moveDir;
     public Vector2 CamDir => _camDir;
     Vector2 _camDir;
-
-    public Action OnFireButtonDownEvent;
-    public Action OnAimButttonDownEvent;
 
     void Awake()
     {
