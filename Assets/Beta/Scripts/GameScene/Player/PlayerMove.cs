@@ -31,6 +31,7 @@ public class PlayerMove : MonoBehaviour
                 Camera.main.transform.right * horizontal;
 
         _rb.velocity = dir * _speed + new Vector3(0, _rb.velocity.y, 0f);
+        //transform.position = dir * _speed;// + new Vector3(0, _rb.velocity.y, 0f);
     }
 
 }

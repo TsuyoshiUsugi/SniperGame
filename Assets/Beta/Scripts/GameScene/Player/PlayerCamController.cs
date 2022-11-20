@@ -14,6 +14,8 @@ public class PlayerCamController : MonoBehaviour
     [SerializeField] GameObject _eye;
     [SerializeField] CinemachineVirtualCamera _playerCam;
     [SerializeField] CinemachineVirtualCamera _scopeCam;
+    [SerializeField] Rigidbody _bodyRb;
+    [SerializeField] Rigidbody _eyeRb;
 
     [Header("設定値")]
     [SerializeField] float _camSpeed;
@@ -22,7 +24,6 @@ public class PlayerCamController : MonoBehaviour
     [SerializeField] float _minVerticalAngle;
     Quaternion _quaternionYMaxAngle;
     Quaternion _quaternionYMinAngle;
-    Quaternion _quaternionXMaxAngle;
 
     [Header("確認用フィールド")]
     [SerializeField] Vector2 _camDir;
@@ -73,7 +74,6 @@ public class PlayerCamController : MonoBehaviour
     {
         _quaternionYMaxAngle = Quaternion.Euler(_maxVerticalAngle, 0, 0);
         _quaternionYMinAngle = Quaternion.Euler(_minVerticalAngle, 0, 0);
-        _quaternionXMaxAngle = Quaternion.Euler(0, 360, 0);
     }
 
     
@@ -87,14 +87,7 @@ public class PlayerCamController : MonoBehaviour
     {
         Rotate();
 
-        if(_camX > 360)
-        {
-            _camX = 0;
-        }
-        else if(_camX < 0)
-        {
-            _camX = 360;
-        }
+
     }
 
     /// <summary>
@@ -115,8 +108,12 @@ public class PlayerCamController : MonoBehaviour
         _camX += (_camDir.x / _camDetailSensitivity) * _camSpeed;
         _camY -= (_camDir.y / _camDetailSensitivity) * _camSpeed;
 
-        this.transform.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
+        _bodyRb.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
+        //transform.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
         _eye.transform.localRotation = Quaternion.AngleAxis(_camY, Vector3.right);
+
+        //_bodyRb.AddTorque(transform.up * _camDir.x * _);
+        //_eyeRb.AddTorque(transform.right * _camY);
         
         RorateAngleLimit();
 
@@ -133,6 +130,16 @@ public class PlayerCamController : MonoBehaviour
             {
                 _eye.transform.localRotation = _quaternionYMinAngle;
                 _camY = _minVerticalAngle;
+            }
+
+            //横
+            if (_camX > 360)
+            {
+                _camX = 0;
+            }
+            else if (_camX < 0)
+            {
+                _camX = 360;
             }
 
         }
