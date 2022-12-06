@@ -5,12 +5,12 @@ using UnityEngine.Events;
 
 public class TitlePresenter : MonoBehaviour
 {
-    [SerializeField] InputManager _inputManager;
+    [SerializeField] TitleView _titleView;
     [SerializeField] TitleManager _titleManager;
     // Start is called before the first frame update
     void Start()
     {
-        _inputManager.OnAnyButtonDownEvent += () =>_titleManager.LoadMenuScene();
+        _titleView.OnStartButtonClicked += () =>_titleManager.LoadMenuScene();
     }
 
 }
