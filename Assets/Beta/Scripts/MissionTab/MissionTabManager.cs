@@ -21,6 +21,9 @@ public class MissionTabManager : MonoBehaviour
         GenerateMissionButton();
     }
 
+    /// <summary>
+    /// リストにあるミッションの数だけボタンを生成する
+    /// </summary>
     private void GenerateMissionButton()
     {
         for (int i = 0; i < _missionDataList.Count; i++)
@@ -28,10 +31,15 @@ public class MissionTabManager : MonoBehaviour
             GameObject missionButton = Instantiate(_missionButtonPrefab);
             missionButton.GetComponentInChildren<Text>().text = _missionDataList[i].MissionName;
             missionButton.transform.SetParent(_buttonAnker.transform);
+
+            missionButton.GetComponent<Button>().onClick.AddListener(() => ShowInfo());
         }
     }
 
+    void ShowInfo()
+    {
 
+    }
 
     // Update is called once per frame
     void Update()

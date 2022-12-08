@@ -30,6 +30,7 @@ public class PlayerCamController : MonoBehaviour
     [SerializeField] float _camX = 0;
     [SerializeField] float _camY = 0;
 
+
     private void Awake()
     {
         InitializeCamPriority();
@@ -80,14 +81,9 @@ public class PlayerCamController : MonoBehaviour
 
     void Update()
     {
-        ReadInput(); 
-    }
+        ReadInput();
 
-    private void FixedUpdate()
-    {
         Rotate();
-
-
     }
 
     /// <summary>
@@ -106,14 +102,11 @@ public class PlayerCamController : MonoBehaviour
     void Rotate()
     {
         _camX += (_camDir.x / _camDetailSensitivity) * _camSpeed;
-        _camY -= (_camDir.y / _camDetailSensitivity) * _camSpeed;
-
         _bodyRb.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
-        //transform.rotation = Quaternion.AngleAxis(_camX, Vector3.up);
-        _eye.transform.localRotation = Quaternion.AngleAxis(_camY, Vector3.right);
+        
 
-        //_bodyRb.AddTorque(transform.up * _camDir.x * _);
-        //_eyeRb.AddTorque(transform.right * _camY);
+        _camY -= (_camDir.y / _camDetailSensitivity) * _camSpeed;
+        _eye.transform.localRotation = Quaternion.AngleAxis(_camY, Vector3.right);
         
         RorateAngleLimit();
 
