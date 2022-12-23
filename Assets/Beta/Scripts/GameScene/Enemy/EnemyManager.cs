@@ -7,11 +7,13 @@ using UnityEngine;
 /// </summary>
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] GameSceneManager _gameSceneManager;
+    [Header("éQè∆")]
+    GameSceneManager _gameSceneManager;
+    [SerializeField] NormalEnemyMove _enemyMove;
 
+    [Header("ê›íËíl")]
     [SerializeField] float _hp = 100;
-
-    Status _currentStatus = Status.Normal;
+    [SerializeField] Status _currentStatus = Status.Normal;
 
     /// <summary>
     /// èÛë‘
@@ -25,13 +27,16 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _currentStatus = Status.Normal;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(_currentStatus == Status.HighAlert)
+        {
+            _enemyMove.enabled = false;
+        }
     }
 
     public void Hit(float dmg)

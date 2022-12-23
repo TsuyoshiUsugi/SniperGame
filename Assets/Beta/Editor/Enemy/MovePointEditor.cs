@@ -9,7 +9,7 @@ using UnityEditor;
 /// 機能
 /// Scene上から移動地点を操作可能にする
 /// </summary>
-[CustomEditor(typeof(EnemyMove))]
+[CustomEditor(typeof(NormalEnemyMove))]
 public class MovePointEditor : Editor
 {
     SerializedProperty _movePosList;
@@ -26,7 +26,7 @@ public class MovePointEditor : Editor
 
     private void OnSceneGUI()
     {
-        var enemyMove = target as EnemyMove;
+        var enemyMove = target as NormalEnemyMove;
 
         serializedObject.Update();
 
