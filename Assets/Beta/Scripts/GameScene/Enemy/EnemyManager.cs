@@ -10,7 +10,8 @@ public class EnemyManager : MonoBehaviour
 {
     [Header("éQè∆")]
     GameSceneManager _gameSceneManager;
-    [SerializeField] EnemyMove _enemyMove;
+    [SerializeField] EnemyMove _normalEnemyMove;
+    [SerializeField] EnemyMove _highAlertEnemyMove;
 
     [Header("ê›íËíl")]
     [SerializeField] float _hp = 100;
@@ -25,22 +26,30 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_currentStatus == EnemyState.HighAlert)
+        switch (_currentStatus)
         {
-            _enemyMove.enabled = false;
+            case EnemyState.Normal:
+                _normalEnemyMove.enabled = true;
+                _highAlertEnemyMove.enabled = false;
+
+                break;
+
+            case EnemyState.HighAlert:
+                _normalEnemyMove.enabled = false;
+                _highAlertEnemyMove.enabled = true;
+
+                break;
         }
     }
 
     public void Hit(float dmg)
     {
         _hp -= dmg;
-
         if (_hp <= 0) Death();
     }
 
     void Death()
     {
-        Å@
-         _gameSceneManager.Clear();     
+        Destroy(this.gameObject);
     }
 }
