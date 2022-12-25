@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -9,7 +7,7 @@ using UnityEditor;
 /// 機能
 /// Scene上から移動地点を操作可能にする
 /// </summary>
-[CustomEditor(typeof(NormalEnemyMove))]
+[CustomEditor(typeof(EnemyMove))]
 public class MovePointEditor : Editor
 {
     SerializedProperty _movePosList;
@@ -26,11 +24,13 @@ public class MovePointEditor : Editor
 
     private void OnSceneGUI()
     {
-        var enemyMove = target as NormalEnemyMove;
+        var enemyMove = target as EnemyMove;
 
         serializedObject.Update();
 
         if (_movePosList == null) return;
+
+        enemyMove.MovePoints[0] = enemyMove.gameObject.transform.position;
 
         for (int i = 0; i < enemyMove.MovePoints.Count; i++)
         {
@@ -38,7 +38,7 @@ public class MovePointEditor : Editor
             EditorGUI.BeginChangeCheck();
             var newMovePos = Handles.PositionHandle(movePos, enemyMove.transform.rotation);
 
-            if(EditorGUI.EndChangeCheck())
+            if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Change");
                 enemyMove.MovePoints[i] = newMovePos;
@@ -47,4 +47,5 @@ public class MovePointEditor : Editor
 
         serializedObject.ApplyModifiedProperties();
     }
+
 }

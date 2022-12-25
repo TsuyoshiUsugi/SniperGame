@@ -1,29 +1,32 @@
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using MyExtension;
+using EnemyInfo;
 
 /// <summary>
 /// 通常時の動きを設定するコンポ―ネント
 /// 指定された地点に移動する
 /// </summary>
-public class NormalEnemyMove : MonoBehaviour
+public class EnemyMove : MonoBehaviour
 {
+    [Header("設定値")]
     [SerializeField, Header("移動地点間の到達時間")] float _speed;
+
+    [SerializeField, Header("状態")] EnemyState _enemyState;
+    public EnemyState ThisEnemyState => _enemyState; 
 
     [Header("移動経路")]
     [SerializeField] List<Vector3> _movePoints;
     public List<Vector3> MovePoints => _movePoints;
 
-    [SerializeField] int _movePointIndex;
+    int _movePointIndex;
     Vector3 _velocity = Vector3.zero;
+    const float _gizumoSize = 0.3f;
 
     // Start is called before the first frame update
     void Start()
     {
         _movePointIndex = 0;
-
-        Debug.Log(_movePoints.Count);
     }
 
     // Update is called once per frame
@@ -56,17 +59,24 @@ public class NormalEnemyMove : MonoBehaviour
         
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     /// <summary>
     /// 選択されているとき移動する道を表示する
     /// </summary>
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = new Color(1f, 0, 0, 0.3f);
+        if(_enemyState == EnemyState.Normal)
+        {
+            Gizmos.color = Color.blue;   //青
+        }
+        else if (_enemyState == EnemyState.HighAlert)
+        {
+            Gizmos.color = Color.red;   //赤
+        }
 
         for (int i = 0; i < _movePoints.Count; i++)
         {
-            Gizmos.DrawSphere(_movePoints[i], 1f);
+            Gizmos.DrawSphere(_movePoints[i], _gizumoSize);
 
             if (i != 0)
             {
@@ -75,5 +85,5 @@ public class NormalEnemyMove : MonoBehaviour
 
         }
     }
-    #endif
+#endif
 }

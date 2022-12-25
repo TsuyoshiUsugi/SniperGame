@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EnemyInfo;
 
 /// <summary>
 /// 敵の行動を管理するコンポーネント
@@ -9,31 +10,22 @@ public class EnemyManager : MonoBehaviour
 {
     [Header("参照")]
     GameSceneManager _gameSceneManager;
-    [SerializeField] NormalEnemyMove _enemyMove;
+    [SerializeField] EnemyMove _enemyMove;
 
     [Header("設定値")]
     [SerializeField] float _hp = 100;
-    [SerializeField] Status _currentStatus = Status.Normal;
-
-    /// <summary>
-    /// 状態
-    /// </summary>
-    public enum Status
-    {
-        Normal,
-        HighAlert,
-    }
+    [SerializeField] EnemyState _currentStatus = EnemyState.Normal;
 
     // Start is called before the first frame update
     void Start()
     {
-        _currentStatus = Status.Normal;
+        _currentStatus = EnemyState.Normal;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_currentStatus == Status.HighAlert)
+        if(_currentStatus == EnemyState.HighAlert)
         {
             _enemyMove.enabled = false;
         }
@@ -48,6 +40,7 @@ public class EnemyManager : MonoBehaviour
 
     void Death()
     {
+        　
          _gameSceneManager.Clear();     
     }
 }

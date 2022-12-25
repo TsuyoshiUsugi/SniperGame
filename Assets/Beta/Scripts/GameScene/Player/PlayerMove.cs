@@ -18,7 +18,6 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         Move(_inputManager.MoveDir);
-
     }
 
     void Move(Vector2 input)
