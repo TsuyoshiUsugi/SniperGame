@@ -25,7 +25,7 @@ public class GameSceneManager : MonoBehaviour
     }
 
     /// <summary>
-    /// クリア演出と終り次第結果シーンのロード
+    /// クリア演出と終わり次第結果シーンのロード
     /// </summary>
     public void Clear()
     {
@@ -34,7 +34,7 @@ public class GameSceneManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 失敗の演出と終り次第結果シーンのロード
+    /// 失敗の演出と終わり次第結果シーンのロード
     /// </summary>
     void Failed()
     {
