@@ -33,8 +33,7 @@ public class MissionInfo : ScriptableObject
         [SerializeField] string _targetName;
         [SerializeField] Sprite _targetImage;
         [SerializeField] string _targetInfo;
-        [SerializeField] Vector3 _targetAI; //ここは独自のAIクラスにする予定
-        //モデルの参照を書く
+        [SerializeField] Vector3 _targetAI; //ここはターゲットの移動地点の参照
     }
 
     /// <summary>
@@ -43,9 +42,13 @@ public class MissionInfo : ScriptableObject
     [Serializable]
     public class EnemyInfo
     {
-        [SerializeField] int _targetNum;
-        //独自のAIクラスの変数を用意
-    　　//参照も書く
+        /*
+        ここに書くべきなのは、
+        ・ザコ敵の生成位置
+        ・巡回ルート
+        ・戦闘時の移動地点
+
+        */
     }
 
     /// <summary>
