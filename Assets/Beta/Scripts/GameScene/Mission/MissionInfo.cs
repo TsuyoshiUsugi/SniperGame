@@ -20,6 +20,7 @@ public class MissionInfo : ScriptableObject
     
     [Header("ミッション名")]
     [SerializeField] public string MissionName;
+    [SerializeField] public int MissionIndex;
     public List<TargetInfo> _targetInfos;
     public EnemyInfo _enemyInfo;
     public StageInfo _stageInfo;
@@ -31,9 +32,15 @@ public class MissionInfo : ScriptableObject
     public class TargetInfo
     {
         [SerializeField] string _targetName;
+        public string TargetName => _targetName;
+
         [SerializeField] Sprite _targetImage;
+        public Sprite TargetImage => _targetImage;
+
         [SerializeField] string _targetInfo;
-        [SerializeField] Vector3 _targetAI; //ここはターゲットの移動地点の参照
+        public String TargetInfomation => _targetInfo;
+
+        [SerializeField] Vector3 _targetMovePoints; //ここはターゲットの移動地点の参照
     }
 
     /// <summary>
