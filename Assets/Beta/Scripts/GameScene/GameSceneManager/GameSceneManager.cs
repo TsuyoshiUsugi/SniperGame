@@ -12,18 +12,6 @@ public class GameSceneManager : MonoBehaviour
 {
     [SerializeField] string _resultSceneName;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     /// <summary>
     /// クリア演出と終わり次第結果シーンのロード
     /// </summary>
@@ -36,7 +24,7 @@ public class GameSceneManager : MonoBehaviour
     /// <summary>
     /// 失敗の演出と終わり次第結果シーンのロード
     /// </summary>
-    void Failed()
+    public void Failed()
     {
         SceneManager.LoadScene(_resultSceneName);
     }
