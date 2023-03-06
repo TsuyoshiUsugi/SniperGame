@@ -20,11 +20,13 @@ public class MissionTabManager : MonoBehaviour
     [SerializeField] Image _targetImage;
     [SerializeField] Text _targetName;
     [SerializeField] Text _targetInfo;
+    [SerializeField] Text _highScoreText;
 
     // Start is called before the first frame update
     void Awake()
     {
         GenerateMissionButton();
+        ShowInfo(1);
     }
 
     /// <summary>
@@ -52,6 +54,7 @@ public class MissionTabManager : MonoBehaviour
         int num = index - 1;
         _targetName.text = $"名前：{_missionDataList[num]._targetInfos[0].TargetName}";
         _targetInfo.text = $"詳細：{ _missionDataList[num]._targetInfos[0].TargetInfomation}";
+        _highScoreText.text = $"ハイスコア：{_missionDataList[num].HighScore}";
         MissionInfoHolder.Instance.CurrentMission = _missionDataList[num];
     }
 }

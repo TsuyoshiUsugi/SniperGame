@@ -28,7 +28,5 @@ public class Timer : MonoBehaviour
         var min = (int)_time / 60;
         var sec = _time - min * 60;
         _timerText.text = $"TIME {min:00}:{sec:00}";
-    }
-
-    
+    }  
 }
