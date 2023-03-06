@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -9,8 +10,11 @@ using UnityEngine.UI;
 public class MissionTabView : MonoBehaviour
 {
     [Header("ŽQÆ")]
-    [SerializeField] Sprite _mapImage;
-    [SerializeField] Sprite _targetImage;
-    [SerializeField] Text _targetName;
-    [SerializeField] Text _targetInfo;
+    [SerializeField] Button _standByButton;
+    [SerializeField] string _GameSceneName;
+
+    private void Start()
+    {
+        _standByButton.onClick.AddListener(() => SceneManager.LoadScene(_GameSceneName));
+    }
 }

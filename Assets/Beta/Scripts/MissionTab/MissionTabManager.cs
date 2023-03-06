@@ -52,6 +52,7 @@ public class MissionTabManager : MonoBehaviour
         int num = index - 1;
         _targetName.text = $"–¼‘OF{_missionDataList[num]._targetInfos[0].TargetName}";
         _targetInfo.text = $"Ú×F{ _missionDataList[num]._targetInfos[0].TargetInfomation}";
+        MissionInfoHolder.Instance.CurrentMission = _missionDataList[num];
     }
 }
 
