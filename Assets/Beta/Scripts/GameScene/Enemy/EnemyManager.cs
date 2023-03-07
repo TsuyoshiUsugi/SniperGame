@@ -50,6 +50,15 @@ public class EnemyManager : MonoBehaviour
 
     void Death()
     {
-        Destroy(this.gameObject);
+        Animator anim = GetComponentInChildren<Animator>();
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        anim.enabled = false;
+
+        foreach (var rb in rigidbodies)
+        {
+            rb.isKinematic = false;
+            
+        }
     }
 }

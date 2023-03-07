@@ -30,6 +30,8 @@ public class PlayerCamController : MonoBehaviour
     [SerializeField] float _camX = 0;
     [SerializeField] float _camY = 0;
 
+    [SerializeField] float _debugY;
+
 
     private void Awake()
     {

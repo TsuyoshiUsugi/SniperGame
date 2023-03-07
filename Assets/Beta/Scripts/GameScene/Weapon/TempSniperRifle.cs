@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Cinemachine;
 
 public class TempSniperRifle : MonoBehaviour, IUse
 {
     [Header("éQè∆")]
     [SerializeField] GameObject _muzzle;
     [SerializeField] GameObject _bullet;
+    [SerializeField] CinemachineVirtualCamera _cam;
 
     [Header("ê›íËíl")]
     [SerializeField] float _speed;
@@ -26,6 +28,6 @@ public class TempSniperRifle : MonoBehaviour, IUse
     private void Shot()
     {
         var bulletRb = Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation)?.GetComponent<Rigidbody>();
-        bulletRb.AddForce(this.gameObject.transform.forward * _speed, ForceMode.Impulse);   
+        bulletRb.AddForce(_cam.transform.forward * _speed, ForceMode.Impulse);   
     }
 }

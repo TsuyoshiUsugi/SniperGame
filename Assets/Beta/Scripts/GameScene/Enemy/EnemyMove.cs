@@ -9,6 +9,10 @@ using EnemyInfo;
 /// </summary>
 public class EnemyMove : MonoBehaviour
 {
+    [Header("参照")]
+    [SerializeField] GameObject _body;
+    Animator _animator;
+
     [Header("設定値")]
     [SerializeField, Header("移動地点間の到達時間")] float _speed;
 
@@ -20,19 +24,27 @@ public class EnemyMove : MonoBehaviour
     public List<Vector3> MovePoints => _movePoints;
 
     int _movePointIndex;
+    Vector3 _latestPos;
+
     Vector3 _velocity = Vector3.zero;
+
     const float _gizumoSize = 0.3f;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _movePointIndex = 0;
+
+        _animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveThisObj();
+
+        RotateObj();
         
         SlideIndex();
     }
@@ -46,6 +58,30 @@ public class EnemyMove : MonoBehaviour
         transform.position =
                 Vector3.SmoothDamp(transform.position, _movePoints[_movePointIndex + 1], ref _velocity, _speed);
     }
+
+    /// <summary>
+    /// 向かっている地点の方向にキャラを向かせる
+    /// </summary>
+    void RotateObj()
+    {
+        var diff = transform.position - _latestPos;
+        _latestPos = transform.position;
+
+        if(diff.magnitude > 0.01f)
+        {
+            _body.transform.rotation = Quaternion.LookRotation(diff);
+
+            _animator.SetBool("Walking", true);
+        }
+        else
+        {
+            _animator.SetBool("Walking", false);
+        }
+
+        //if (_movePointIndex >= _movePoints.Count - 1) return;
+
+        //_body.transform.R(_movePoints[_movePointIndex + 1]);
+    }   
 
     /// <summary>
     /// 指定した地点に到達したらインデックスを進める
