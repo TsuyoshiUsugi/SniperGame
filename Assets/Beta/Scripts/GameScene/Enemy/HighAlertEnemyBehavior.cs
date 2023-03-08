@@ -42,8 +42,16 @@ public class HighAlertEnemyBehavior : EnemyBehavior
 
     void Shoot()
     {
+        var stop = Observable.EveryUpdate().Where(_ => this.enabled == false);
+
         Observable.Interval(TimeSpan.FromSeconds(_shootSpan))
+            .TakeUntil(stop)
             .Subscribe(_ => _holdItem?.GetComponent<IUse>().Use())
             .AddTo(this);
+    }
+
+    private void OnDisable()
+    {
+        
     }
 }

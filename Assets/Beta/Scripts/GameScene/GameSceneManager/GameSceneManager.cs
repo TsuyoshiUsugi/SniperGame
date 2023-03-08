@@ -12,7 +12,6 @@ using UnityEngine.SceneManagement;
 public class GameSceneManager : MonoBehaviour
 {
     [Header("éQè∆")]
-    [SerializeField] string _resultSceneName;
     [SerializeField] Timer _timer;
     [SerializeField] ScoreView _scoreView;
     [SerializeField] GameUIManager _gameUIManager;
@@ -66,10 +65,24 @@ public class GameSceneManager : MonoBehaviour
     /// </summary>
     void Clear()
     {
+        TurnOffEnemyBehavior();
+
+        FindObjectOfType<PlayerManager>().StopPlaerInput();
+
         Debug.Log("ÉNÉäÉA");
         _gameUIManager.UnlockCursor();
         ScoreManager.Instance.Clear(_timer.CurrentTime);
         _scoreView.SetScoreView();
+    }
+
+    private void TurnOffEnemyBehavior()
+    {
+        var enemies = FindObjectsOfType<HighAlertEnemyBehavior>();
+
+        foreach (var enemy in enemies)
+        {
+            enemy.enabled = false;
+        }
     }
 
     /// <summary>
@@ -77,10 +90,11 @@ public class GameSceneManager : MonoBehaviour
     /// </summary>
     public void Failed()
     {
-        Debug.Log("é∏îs");
+        FindObjectOfType<PlayerManager>().StopPlaerInput();
+
+        TurnOffEnemyBehavior();
         ScoreManager.Instance.Fail();
         _gameUIManager.UnlockCursor();
-        ScoreManager.Instance.Clear(_timer.CurrentTime);
         _scoreView.SetScoreView();
     }
 

@@ -8,6 +8,7 @@ public class PlayerCamControlManager : MonoBehaviour
     [Header("Ý’è")]
     [SerializeField] AxisState _rotateX;
     [SerializeField] AxisState _rotateY;
+    [SerializeField] float _rotateXGap;
 
     [Header("ŽQÆ")]
     [SerializeField] InputManager _inputManager;
@@ -17,6 +18,7 @@ public class PlayerCamControlManager : MonoBehaviour
 
     private void Start()
     {
+        _rotateX.Value += _rotateXGap;
         _inputManager.OnAimButtonDownEvent += isPressed => Aim(isPressed);
     }
 

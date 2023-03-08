@@ -2227,7 +2227,7 @@ GameObject:
   - component: {fileID: 491530547}
   - component: {fileID: 491530546}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TestMissionInfoHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6361,9 +6361,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 934737922}
     - target: {fileID: 7769497741888947999, guid: 2e3ea88d77c19dc4cbdb8b9bf6d4df53, type: 3}
+      propertyPath: _rotateXGap
+      value: 146
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769497741888947999, guid: 2e3ea88d77c19dc4cbdb8b9bf6d4df53, type: 3}
       propertyPath: _inputManager
       value: 
       objectReference: {fileID: 1416031855}
+    - target: {fileID: 7769497741888947999, guid: 2e3ea88d77c19dc4cbdb8b9bf6d4df53, type: 3}
+      propertyPath: _rotateX.m_Wrap
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7769497741888947999, guid: 2e3ea88d77c19dc4cbdb8b9bf6d4df53, type: 3}
       propertyPath: _rotateX.m_MaxValue
       value: 180
@@ -7726,7 +7734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af6abbb11de85b46a77d24950d6f063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resultSceneName: 
   _timer: {fileID: 2108323704}
   _scoreView: {fileID: 890778801}
   _gameUIManager: {fileID: 2048405936}

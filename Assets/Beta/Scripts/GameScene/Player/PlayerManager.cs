@@ -23,11 +23,15 @@ public class PlayerManager : MonoBehaviour
     {
         _hp -= dmg;
 
+        Death();
+    }
+
+    private void Death()
+    {
         if (_hp <= 0)
         {
             _gameSceneManager.Failed();
-            _playerCamControlManager.enabled = false;
-            _playerAction.enabled = false;
+            StopPlaerInput();
 
             GetComponentInChildren<Animator>().SetBool("Die", true);
             var playerIK = GetComponentsInChildren<IIKOff>();
@@ -36,6 +40,14 @@ public class PlayerManager : MonoBehaviour
                 ik.OffIk();
                 gameObject.AddComponent<Rigidbody>();
             }
+
+            this.enabled = false;
         }
+    }
+
+    public void StopPlaerInput()
+    {
+        _playerCamControlManager.enabled = false;
+        _playerAction.enabled = false;
     }
 }
