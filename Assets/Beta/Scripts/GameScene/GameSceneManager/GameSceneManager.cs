@@ -12,13 +12,44 @@ public class GameSceneManager : MonoBehaviour
 {
     [SerializeField] string _resultSceneName;
 
+    //Targetの生存確認につかう
+    Dictionary<EnemyManager, EnemyInfo.EnemyState> _targetDic = new();
+
+    /// <summary>
+    /// ターゲットの登録
+    /// </summary>
+    /// <param name="enemyManager"></param>
+    public void RegisterTarget(EnemyManager enemyManager)
+    {
+        _targetDic.Add(enemyManager, EnemyInfo.EnemyState.Normal);
+    }
+
+    /// <summary>
+    /// ターゲット死亡時の処理
+    /// </summary>
+    public void RegisterTargetDown(EnemyManager enemyManager)
+    {
+        _targetDic[enemyManager] = EnemyInfo.EnemyState.Death;
+        CheckTargetAlive();
+    }
+
+    void CheckTargetAlive()
+    {
+        foreach (var target in _targetDic)
+        {
+            if (target.Value != EnemyInfo.EnemyState.Death) return; 
+        }
+
+        Clear();
+    }
+
     /// <summary>
     /// クリア演出と終わり次第結果シーンのロード
     /// </summary>
-    public void Clear()
+    void Clear()
     {
         Debug.Log("クリア");
-        SceneManager.LoadScene(_resultSceneName);
+        //SceneManager.LoadScene(_resultSceneName);
     }
 
     /// <summary>
@@ -26,7 +57,8 @@ public class GameSceneManager : MonoBehaviour
     /// </summary>
     public void Failed()
     {
-        SceneManager.LoadScene(_resultSceneName);
+        Debug.Log("失敗");
+        //SceneManager.LoadScene(_resultSceneName);
     }
 
     /// <summary>

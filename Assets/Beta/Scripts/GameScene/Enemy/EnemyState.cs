@@ -7,6 +7,7 @@ namespace EnemyInfo
     {
         Normal,
         HighAlert,
+        Death,
     }
 }
 
