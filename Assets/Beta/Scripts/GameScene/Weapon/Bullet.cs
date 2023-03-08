@@ -60,6 +60,8 @@ public class Bullet : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, dir.magnitude))
         {
+            if (hit.collider.GetComponent<SearchDeadBody>()) return;
+
             hit.collider.GetComponentInParent<EnemyManager>()?.Hit(_damage);
             Destroy(this.gameObject);
         }

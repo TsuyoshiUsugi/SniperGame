@@ -71,7 +71,6 @@ public class EnemyManager : MonoBehaviour
 
         if(_hp <= 0)
         {
-            ScoreManager.Instance.Kill();
             _currentStatus.Value = EnemyState.Death;
         }
     }
@@ -108,4 +107,5 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+    
 }

@@ -9,7 +9,7 @@ public class HighAlertEnemyBehavior : EnemyBehavior
     [SerializeField] bool _coward;
     [SerializeField] float _shootSpan = 5;
     [SerializeField] GameObject _holdItem;
-    [SerializeField] float _diff = -50;
+    [SerializeField] Vector3 _horiOffset;
 
     // Start is called before the first frame update
     private void Start()
@@ -36,8 +36,12 @@ public class HighAlertEnemyBehavior : EnemyBehavior
 
     void RotateTowardToPlayer()
     {
-        var diff = FindObjectOfType<PlayerCamControlManager>().gameObject.transform.position - transform.position;
-        _body.transform.rotation = Quaternion.LookRotation(diff) * Quaternion.AngleAxis(_diff, Vector3.up);
+        var targetDir = FindObjectOfType<PlayerCamControlManager>().gameObject.transform.position - transform.position;
+        targetDir.y = 0;
+
+        targetDir += _horiOffset;
+
+        _body.transform.rotation = Quaternion.LookRotation(targetDir);
     }
 
     void Shoot()
