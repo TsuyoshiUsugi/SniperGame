@@ -97,8 +97,14 @@ public class EnemyManager : MonoBehaviour
 
         void NotifyOtherScirpts()
         {
-            if (_isTarget) { _gameSceneManager.RegisterTargetDown(this); return; }
-            ScoreManager.Instance.Kill();
+            if (_isTarget)
+            {
+                _gameSceneManager.RegisterTargetDown(this);
+            }
+            else
+            {
+                ScoreManager.Instance.Kill();
+            }
         }
     }
 }

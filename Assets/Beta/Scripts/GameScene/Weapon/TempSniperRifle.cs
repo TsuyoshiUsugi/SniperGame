@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Cinemachine;
+using DG.Tweening;
 
 public class TempSniperRifle : MonoBehaviour, IUse
 {
@@ -13,6 +14,9 @@ public class TempSniperRifle : MonoBehaviour, IUse
 
     [Header("ê›íËíl")]
     [SerializeField] float _speed;
+    [SerializeField] float _recoilNum = -30;
+    [SerializeField] float _recoilTime = 0.1f;
+    [SerializeField] Ease _recoilEase;
 
     void Awake()
     {
@@ -28,6 +32,13 @@ public class TempSniperRifle : MonoBehaviour, IUse
     private void Shot()
     {
         var bulletRb = Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation)?.GetComponent<Rigidbody>();
-        bulletRb.AddForce(_cam.transform.forward * _speed, ForceMode.Impulse);   
+        bulletRb.AddForce(_cam.transform.forward * _speed, ForceMode.Impulse);
+        DoRecoil();
+    }
+
+    void DoRecoil()
+    {
+        Debug.Log("ÉäÉRÉCÉã");
+        transform.DOLocalRotate(new Vector3(_recoilNum, 0, 0), _recoilTime).SetLoops(2,LoopType.Yoyo).SetEase(_recoilEase);
     }
 }

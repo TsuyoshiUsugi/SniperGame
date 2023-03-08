@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -13,9 +14,24 @@ public class GameSceneManager : MonoBehaviour
     [Header("参照")]
     [SerializeField] string _resultSceneName;
     [SerializeField] Timer _timer;
+    [SerializeField] ScoreView _scoreView;
+    [SerializeField] GameUIManager _gameUIManager;
+    [SerializeField] Button _restart;
+    [SerializeField] Button _missionTab;
+    [SerializeField] Button _title;
+    [SerializeField] string _playScene;
+    [SerializeField] string _MissionTabScene;
+    [SerializeField] string _titleScene;
 
     //Targetの生存確認につかう
     Dictionary<EnemyManager, EnemyInfo.EnemyState> _targetDic = new();
+
+    private void Start()
+    {
+        _restart.onClick.AddListener(() => Restart());
+        _missionTab.onClick.AddListener(() => ToMissionTab());
+        _title.onClick.AddListener(() => ToTitleTab());
+    }
 
     /// <summary>
     /// ターゲットの登録
@@ -51,8 +67,9 @@ public class GameSceneManager : MonoBehaviour
     void Clear()
     {
         Debug.Log("クリア");
+        _gameUIManager.UnlockCursor();
         ScoreManager.Instance.Clear(_timer.CurrentTime);
-        //SceneManager.LoadScene(_resultSceneName);
+        _scoreView.SetScoreView();
     }
 
     /// <summary>
@@ -62,7 +79,21 @@ public class GameSceneManager : MonoBehaviour
     {
         Debug.Log("失敗");
         ScoreManager.Instance.Fail();
-        //SceneManager.LoadScene(_resultSceneName);
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(_playScene);
+    }
+
+    void ToMissionTab()
+    {
+        SceneManager.LoadScene(_MissionTabScene);
+    }
+
+    void ToTitleTab()
+    {
+        SceneManager.LoadScene(_titleScene);
     }
 
     /// <summary>

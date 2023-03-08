@@ -11,14 +11,14 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
     [SerializeField] int _highScoreBorder;
     public int Score => _score;
 
-    const int _clearScore = +10000;
-    const int _failScore = -99999;
-    const int _killScore = -100;
-    const int _detectedScore = -3000;
-    const int _timeScoreBonus = -100;
-    const float _sRank = 0.9f;
-    const float _aRank = 0.8f;
-    const float _bRank = 0.7f;
+    public readonly int ClearScore = +10000;
+    public readonly int FailScore = -99999;
+    public readonly int KillScore = -100;
+    public readonly int DetectedScore = -3000;
+    public readonly int TimeScoreBonusScore = -100;
+    public readonly float SRankRatio = 0.9f;
+    public readonly float ARankRatio = 0.8f;
+    public readonly float BRankRatio = 0.7f;
 
     bool _missionClear = false;
     public bool MissionClear => _missionClear;
@@ -31,6 +31,9 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
 
     int _killCount = 0;
     public int KillCount => _killCount;
+
+    int _timeScore = 0;
+    public int TimeScore => _timeScore;
 
     // Start is called before the first frame update
     void Start()
@@ -55,9 +58,9 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
     {
         return _score switch
         {
-            int score when score >= (float)_highScoreBorder * _sRank => "S",
-            int score when (float)_highScoreBorder * _sRank > score && score >= (float)_highScoreBorder * _aRank => "A",
-            int score when (float)_highScoreBorder * _aRank > score && score >= (float)_highScoreBorder * _bRank => "B",
+            int score when score >= (float)_highScoreBorder * SRankRatio => "S",
+            int score when (float)_highScoreBorder * SRankRatio > score && score >= (float)_highScoreBorder * ARankRatio => "A",
+            int score when (float)_highScoreBorder * ARankRatio > score && score >= (float)_highScoreBorder * BRankRatio => "B",
             _ => "C",
         };
     }
@@ -66,30 +69,31 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
     {
         _missionClear = true;
         _score += TimeScoreBonus(time);
-        _score += _clearScore;
+        _score += ClearScore;
         Debug.Log(ScoreRank());
     }
 
-    int TimeScoreBonus(float time)
+    public int TimeScoreBonus(float time)
     {
-        return (int)(_timeScoreBonus * time);
+        _timeScore = (int)(TimeScoreBonusScore * time);
+        return (int)(TimeScoreBonusScore * time);
     }
 
     public void Fail()
     {
         _missionFailed = true;
-        _score += _failScore;
+        _score += FailScore;
     }
 
     public void Kill()
     {
-        _score += _killScore;
+        _score += KillScore;
         _killCount++;
     }
 
     public void Detected()
     {
-        _score += _detectedScore;
+        _score += DetectedScore;
         _isDetected = true;
     }
 }
