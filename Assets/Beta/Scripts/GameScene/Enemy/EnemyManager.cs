@@ -39,6 +39,9 @@ public class EnemyManager : MonoBehaviour
         _currentStatus.Subscribe(_ => ChangeAI()).AddTo(this);
     }
 
+    /// <summary>
+    /// U‚é•‘‚¢‚ğ•ÏX‚·‚é
+    /// </summary>
     void ChangeAI()
     {
         switch (_currentStatus.Value)
@@ -74,9 +77,9 @@ public class EnemyManager : MonoBehaviour
 
     void Death()
     {
+        //€–S‚Ìragdollˆ—
         DeathAnim();
 
-        //€–S‚Ìragdollˆ—
         void DeathAnim()
         {
             Animator anim = GetComponentInChildren<Animator>();
@@ -89,6 +92,13 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
-        if (_isTarget) _gameSceneManager.RegisterTargetDown(this);
+        //’Ê’mˆ—
+        NotifyOtherScirpts();
+
+        void NotifyOtherScirpts()
+        {
+            if (_isTarget) { _gameSceneManager.RegisterTargetDown(this); return; }
+            ScoreManager.Instance.Kill();
+        }
     }
 }

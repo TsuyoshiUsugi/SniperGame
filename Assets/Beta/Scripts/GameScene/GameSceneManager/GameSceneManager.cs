@@ -10,7 +10,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameSceneManager : MonoBehaviour
 {
+    [Header("参照")]
     [SerializeField] string _resultSceneName;
+    [SerializeField] Timer _timer;
 
     //Targetの生存確認につかう
     Dictionary<EnemyManager, EnemyInfo.EnemyState> _targetDic = new();
@@ -25,7 +27,7 @@ public class GameSceneManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ターゲット死亡時の処理
+    /// ターゲット死亡の登録の処理
     /// </summary>
     public void RegisterTargetDown(EnemyManager enemyManager)
     {
@@ -49,6 +51,7 @@ public class GameSceneManager : MonoBehaviour
     void Clear()
     {
         Debug.Log("クリア");
+        ScoreManager.Instance.Clear(_timer.CurrentTime);
         //SceneManager.LoadScene(_resultSceneName);
     }
 
@@ -58,6 +61,7 @@ public class GameSceneManager : MonoBehaviour
     public void Failed()
     {
         Debug.Log("失敗");
+        ScoreManager.Instance.Fail();
         //SceneManager.LoadScene(_resultSceneName);
     }
 
