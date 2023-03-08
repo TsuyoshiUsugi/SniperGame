@@ -7,11 +7,11 @@ using EnemyInfo;
 /// 通常時の動きを設定するコンポ―ネント
 /// 指定された地点に移動する
 /// </summary>
-public class EnemyMove : MonoBehaviour
+public class EnemyBehavior : MonoBehaviour
 {
     [Header("参照")]
-    [SerializeField] GameObject _body;
-    Animator _animator;
+    [SerializeField] protected GameObject _body;
+    protected Animator _animator;
 
     [Header("設定値")]
     [SerializeField, Header("移動地点間の到達時間")] float _speed;
@@ -20,7 +20,7 @@ public class EnemyMove : MonoBehaviour
     public EnemyState ThisEnemyState => _enemyState; 
 
     [Header("移動経路")]
-    [SerializeField] List<Vector3> _movePoints;
+    [SerializeField] protected List<Vector3> _movePoints = new();
     public List<Vector3> MovePoints => _movePoints;
 
     int _movePointIndex;
@@ -35,13 +35,14 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         _movePointIndex = 0;
-
         _animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         MoveThisObj();
 
         RotateObj();
@@ -52,7 +53,7 @@ public class EnemyMove : MonoBehaviour
     /// <summary>
     /// 指定した移動地点に移動する
     /// </summary>
-    private void MoveThisObj()
+    protected void MoveThisObj()
     {
         if (_movePointIndex >= _movePoints.Count - 1) return;
         transform.position =
@@ -62,7 +63,7 @@ public class EnemyMove : MonoBehaviour
     /// <summary>
     /// 向かっている地点の方向にキャラを向かせる
     /// </summary>
-    void RotateObj()
+    protected void RotateObj()
     {
         var diff = transform.position - _latestPos;
         _latestPos = transform.position;
@@ -77,16 +78,12 @@ public class EnemyMove : MonoBehaviour
         {
             _animator.SetBool("Walking", false);
         }
-
-        //if (_movePointIndex >= _movePoints.Count - 1) return;
-
-        //_body.transform.R(_movePoints[_movePointIndex + 1]);
     }   
 
     /// <summary>
     /// 指定した地点に到達したらインデックスを進める
     /// </summary>
-    private void SlideIndex()
+    protected void SlideIndex()
     {
         if (_movePointIndex >= _movePoints.Count - 1) return;
         var roundCurrentPos = transform.position.Round(1);

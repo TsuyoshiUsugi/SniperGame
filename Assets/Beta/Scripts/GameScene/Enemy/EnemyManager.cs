@@ -18,6 +18,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] bool _isTarget = false;
     [SerializeField] float _hp = 100;
     [SerializeField] EnemyStateReactiveProperty _currentStatus = new();
+    public EnemyStateReactiveProperty CurrentState { get => _currentStatus; set => _currentStatus = value; }
 
     // Start is called before the first frame update
     void Start()

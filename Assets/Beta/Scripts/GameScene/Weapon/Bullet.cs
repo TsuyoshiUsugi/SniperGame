@@ -10,12 +10,17 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [Header("ê›íËíl")]
-    [SerializeField] float _damage;
-    [SerializeField] float _deleteTime = 5;
-    Vector3 _current;
-    Vector3 _previous;
+    [SerializeField] protected float _damage;
+    [SerializeField] protected float _deleteTime = 5;
+    protected Vector3 _current;
+    protected Vector3 _previous;
 
-    private void Start()
+    void Start()
+    {
+        Initialize();
+    }
+
+    protected void Initialize()
     {
         _current = transform.position;
         _previous = transform.position;
@@ -34,7 +39,7 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// è¡ñ≈Ç∑ÇÈÇ‹Ç≈ÇÃéûä‘Çåvë™Ç∑ÇÈ
     /// </summary>
-    private void DeleteTimer()
+    protected void DeleteTimer()
     {
         _deleteTime -= Time.deltaTime;
 

@@ -79,6 +79,9 @@ public class GameSceneManager : MonoBehaviour
     {
         Debug.Log("Ž¸”s");
         ScoreManager.Instance.Fail();
+        _gameUIManager.UnlockCursor();
+        ScoreManager.Instance.Clear(_timer.CurrentTime);
+        _scoreView.SetScoreView();
     }
 
     void Restart()

@@ -8,12 +8,12 @@ using DG.Tweening;
 public class TempSniperRifle : MonoBehaviour, IUse
 {
     [Header("参照")]
-    [SerializeField] GameObject _muzzle;
-    [SerializeField] GameObject _bullet;
+    [SerializeField] protected GameObject _muzzle;
+    [SerializeField] protected GameObject _bullet;
     [SerializeField] CinemachineVirtualCamera _cam;
 
     [Header("設定値")]
-    [SerializeField] float _speed;
+    [SerializeField] protected float _speed = 500;
     [SerializeField] float _recoilNum = -30;
     [SerializeField] float _recoilTime = 0.1f;
     [SerializeField] Ease _recoilEase;
@@ -24,7 +24,7 @@ public class TempSniperRifle : MonoBehaviour, IUse
         Assert.IsNotNull(_bullet);
     }
 
-    public void Use()
+    public virtual void Use()
     {
         Shot();
     }
@@ -32,13 +32,14 @@ public class TempSniperRifle : MonoBehaviour, IUse
     private void Shot()
     {
         var bulletRb = Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation)?.GetComponent<Rigidbody>();
+
+        if (_cam == null) return;
         bulletRb.AddForce(_cam.transform.forward * _speed, ForceMode.Impulse);
         DoRecoil();
     }
 
-    void DoRecoil()
+    protected void DoRecoil()
     {
-        Debug.Log("リコイル");
         transform.DOLocalRotate(new Vector3(_recoilNum, 0, 0), _recoilTime).SetLoops(2,LoopType.Yoyo).SetEase(_recoilEase).SetAutoKill(this);
     }
 }
