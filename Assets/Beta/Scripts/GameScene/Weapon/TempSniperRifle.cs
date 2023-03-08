@@ -39,6 +39,6 @@ public class TempSniperRifle : MonoBehaviour, IUse
     void DoRecoil()
     {
         Debug.Log("ƒŠƒRƒCƒ‹");
-        transform.DOLocalRotate(new Vector3(_recoilNum, 0, 0), _recoilTime).SetLoops(2,LoopType.Yoyo).SetEase(_recoilEase);
+        transform.DOLocalRotate(new Vector3(_recoilNum, 0, 0), _recoilTime).SetLoops(2,LoopType.Yoyo).SetEase(_recoilEase).SetAutoKill(this);
     }
 }

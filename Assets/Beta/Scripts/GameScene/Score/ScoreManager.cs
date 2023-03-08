@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 /// <summary>
 /// スコアを計算する
@@ -70,6 +71,7 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
         _missionClear = true;
         _score += TimeScoreBonus(time);
         _score += ClearScore;
+        CompareScore();
         Debug.Log(ScoreRank());
     }
 
@@ -95,5 +97,18 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
     {
         _score += DetectedScore;
         _isDetected = true;
+    }
+
+    void CompareScore()
+    {
+        float preHighScore = MissionInfoHolder.Instance.CurrentMission.HighScore;
+        if(_score > preHighScore)
+        {
+            MissionInfoHolder.Instance.CurrentMission.HighScore = _score;
+
+            EditorUtility.SetDirty(MissionInfoHolder.Instance.CurrentMission);
+
+            AssetDatabase.SaveAssets();
+        }
     }
 }

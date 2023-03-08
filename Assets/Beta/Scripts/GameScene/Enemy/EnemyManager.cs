@@ -11,8 +11,8 @@ public class EnemyManager : MonoBehaviour
 {
     [Header("éQè∆")]
     [SerializeField] GameSceneManager _gameSceneManager;
-    [SerializeField] EnemyMove _normalEnemyMove;
-    [SerializeField] EnemyMove _highAlertEnemyMove;
+    [SerializeField] EnemyBehavior _normalEnemyMove;
+    [SerializeField] EnemyBehavior _highAlertEnemyMove;
 
     [Header("ê›íËíl")]
     [SerializeField] bool _isTarget = false;
