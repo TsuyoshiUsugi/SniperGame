@@ -24,7 +24,7 @@ public class MissionInfo : ScriptableObject
     public List<TargetInfo> _targetInfos;
     public EnemyInfo _enemyInfo;
     public StageInfo _stageInfo;
-    public float HighScore = 0;
+    public int StageNum = 0;
 
     /// <summary>
     /// ターゲット情報まとめたクラス

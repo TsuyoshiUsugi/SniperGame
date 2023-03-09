@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,7 +74,6 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
         _score += TimeScoreBonus(time);
         _score += ClearScore;
         CompareScore();
-        Debug.Log(ScoreRank());
         this.enabled = false;
     }
 
@@ -103,14 +104,79 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
 
     void CompareScore()
     {
-        float preHighScore = MissionInfoHolder.Instance.CurrentMission.HighScore;
-        if(_score > preHighScore)
+        var savePath = Application.persistentDataPath + "/saveRecord.json";
+
+        SaveHighScoreData loadData;
+        loadData = LoadData(savePath);
+
+        var recordString = loadData.ScoreRecord.Split(","); //”z—ñ‚Í0:1223,1:2222‚Æ‚¢‚¤‚æ‚¤‚É‚È‚Á‚Ä‚¢‚é
+        var preHighScore = 0;
+        var registerRecord = "";
+
+        for (int i = 0; i < recordString.Length; i++)
         {
-            MissionInfoHolder.Instance.CurrentMission.HighScore = _score;
+            if (!recordString[i].StartsWith(MissionInfoHolder.Instance.CurrentMission.StageNum.ToString())) return;
 
-            EditorUtility.SetDirty(MissionInfoHolder.Instance.CurrentMission);
+            var strNum = recordString[i].Split(":");
+            preHighScore = int.Parse(strNum[1]);
 
-            AssetDatabase.SaveAssets();
+            if (_score > preHighScore == false) return;
+            strNum[1] = _score.ToString();
+
+            var newRecord = strNum[0] + ":" + strNum[1];
+
+            for (int j = 0; j <= recordString.Length - 2; j++)
+            {
+                if(j == 0 && i == j)
+                {
+                    registerRecord += newRecord;
+                    Debug.Log("ok");
+                }
+                else if(j == 0)
+                {
+                    registerRecord += recordString[j];
+                    Debug.Log("dame");
+                }
+                else if(j == i)
+                {
+                    registerRecord += "," + newRecord;
+                }
+                else
+                {
+                    registerRecord += "," + recordString[j];
+                }
+            }
+
+            Debug.Log(registerRecord);
+            loadData.ScoreRecord = registerRecord;
+
+            string JsonData = JsonUtility.ToJson(loadData);
+            using (StreamWriter streamWriter = new(savePath))
+            {
+                streamWriter.Write(JsonData);
+            }
         }
+
+
     }
+
+    private static SaveHighScoreData LoadData(string savePath)
+    {
+        SaveHighScoreData loadData;
+        using (StreamReader streamReader = new(savePath))
+        {
+            var loadJson = streamReader.ReadToEnd();
+            loadData = JsonUtility.FromJson<SaveHighScoreData>(loadJson);
+        }
+
+        return loadData;
+    }
+
 }
+
+[Serializable]
+public class SaveHighScoreData
+{
+    public string ScoreRecord;
+}
+

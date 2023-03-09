@@ -1,3 +1,4 @@
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +40,6 @@ public class MissionTabManager : MonoBehaviour
             GameObject missionButton = Instantiate(_missionButtonPrefab);
             missionButton.GetComponentInChildren<Text>().text = _missionDataList[i].MissionName;
             missionButton.transform.SetParent(_buttonAnker.transform);
-            Debug.Log(i);
             int num = i;
             missionButton.GetComponent<Button>().onClick.AddListener(() => ShowInfo(num));
         }
@@ -54,15 +54,67 @@ public class MissionTabManager : MonoBehaviour
         //_mapImage.sprite = info._stageInfo. <= map画像を表示する関数
         //_targetImage.sprite = info._targetInfos[0].TargetImage;
         int num = index;
-
-        Debug.Log(num);
         _targetName.text = $"名前：{_missionDataList[num]._targetInfos[0].TargetName}";
         _targetInfo.text = $"詳細：{ _missionDataList[num]._targetInfos[0].TargetInfomation}";
-        _highScoreText.text = $"ハイスコア：{_missionDataList[num].HighScore}";
-        MissionInfoHolder.Instance.CurrentMission = _missionDataList[num];
 
-        Debug.Log("押された" + _missionDataList[num]);
+        _highScoreText.text = $"ハイスコア：{LoadHighScore(num)}";
+
+        MissionInfoHolder.Instance.CurrentMission = _missionDataList[num];
+    }
+
+    int LoadHighScore(int num)
+    {
+        var savePath = Application.persistentDataPath + "/saveRecord.json";
+        SaveHighScoreData loadData;
+
+        if (File.Exists(savePath) == false)
+        {
+            GenarateSaveFile(savePath);
+            Debug.Log("セーブデータがなかったので生成");
+        }
+
+        using (StreamReader streamReader = new(savePath))
+        {
+            var loadJson = streamReader.ReadToEnd();
+            loadData = JsonUtility.FromJson<SaveHighScoreData>(loadJson);
+        }
+
+        var recordString = loadData.ScoreRecord.Split(","); //配列は0:1223,1:2222というようになっている
+
+        foreach (var str in recordString)
+        {
+            if (str.StartsWith(num.ToString()))
+            {
+                var strNum = str.Split(":");
+                return int.Parse(strNum[1]);
+            }
+        }
+
+        return 0;
+    }
+
+    private void GenarateSaveFile(string savePath)
+    {
+        SaveHighScoreData firstData = new();
+
+        for (int i = 0; i < _missionDataList.Count; i++)
+        {
+            firstData.ScoreRecord += $"{i}:{0},";
+        }
+
+        string firstJsonData = JsonUtility.ToJson(firstData);
+        using (StreamWriter streamWriter = new(savePath))
+        {
+            streamWriter.Write(firstJsonData);
+        }
     }
 }
+
+namespace SaveAndLoad
+{
+
+
+}
+
 
 
