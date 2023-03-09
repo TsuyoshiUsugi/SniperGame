@@ -83,6 +83,8 @@ public class TempSniperRifle : MonoBehaviour, IUse
     IEnumerator Reload()
     {
         if (_currentMagNum.Value == _maxMagNum) yield break;
+        if (!_relodingText) yield break;
+
         _currentMagNum.Value = 0;
         _relodingText.gameObject.SetActive(true);
         yield return new WaitForSeconds(_reloadTime);

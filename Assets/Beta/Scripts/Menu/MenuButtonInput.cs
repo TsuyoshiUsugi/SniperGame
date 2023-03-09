@@ -15,6 +15,7 @@ public class MenuButtonInput : MonoBehaviour
     [SerializeField] Button _rankingButton;
     [SerializeField] Button _noneButton;
     [SerializeField] Button _optionButton;
+    [SerializeField] GameObject _optionPanel;
 
     public Action OnMissionButtonClicked;
     public Action OnEquipmentButtonClicked;
@@ -30,6 +31,7 @@ public class MenuButtonInput : MonoBehaviour
         //_developButton.onClick.AddListener(() => OnDevelopButtonClicked());
         //_rankingButton.onClick.AddListener(() => OnRankingButtonClicked());
         //_noneButton.onClick.AddListener(() => OnNoneButtonClicked());
+        _optionButton.onClick.AddListener(() => _optionPanel.SetActive(true));
     }
 
 }
