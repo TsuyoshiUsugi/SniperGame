@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MissionInfo1-2
   m_EditorClassIdentifier: 
   MissionName: "\u30DF\u30C3\u30B7\u30E7\u30F31-2"
-  MissionSceneName: GameScene01
+  MissionSceneName: GameScene02
   _targetInfos:
   - _targetName: "\u30AB\u30EA\u30FC\u30E0\u30FB\u30A2\u30EB"
     _targetImage: {fileID: 21300000, guid: 13e7e6fe43a8aa049bcd610bbc1f5ff8, type: 3}
@@ -23,4 +23,4 @@ MonoBehaviour:
     _stageIndex: 0
     _time: 0
     _windDirection: 0
-  HighScore: 0
+  HighScore: 9200

@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: -167.73001}
+  m_AnchoredPosition: {x: -158, y: -167.73001}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4702553
@@ -188,7 +188,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -612,7 +612,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _missionDataList:
   - {fileID: 11400000, guid: 61a1b2fbdbb2fa641866a59c60309506, type: 2}
-  _missionButtonPrefab: {fileID: 5173041093426197531, guid: 9ba22a5e959b5e44688307da55bc2779, type: 3}
+  - {fileID: 11400000, guid: 82d8b0cf5923af64b8cc7fbcac8d9d4c, type: 2}
+  _missionButtonPrefab: {fileID: 2604348496922065367, guid: ac3986b582887894fa92d9d5688c94d7, type: 3}
   _buttonAnker: {fileID: 64909467}
   _mapImage: {fileID: 1751772957}
   _targetImage: {fileID: 1648562967}
@@ -946,7 +947,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -101, y: -209.73001}
+  m_AnchoredPosition: {x: -159, y: -209.73001}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &814105168
@@ -976,13 +977,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u8A73\u7D30\uFF1A"
+  m_Text: "\u8A73\u7D30\uFF1Aad"
 --- !u!222 &814105169
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1204,7 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _standByButton: {fileID: 1562621724}
-  _GameSceneName: GameScene01
+  _gameSceneName: 
 --- !u!4 &960645308
 Transform:
   m_ObjectHideFlags: 0

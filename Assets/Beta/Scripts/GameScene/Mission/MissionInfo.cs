@@ -20,7 +20,7 @@ public class MissionInfo : ScriptableObject
     
     [Header("ƒ~ƒbƒVƒ‡ƒ“–¼")]
     [SerializeField] public string MissionName;
-    [SerializeField] public int MissionIndex;
+    [SerializeField] public string MissionSceneName;
     public List<TargetInfo> _targetInfos;
     public EnemyInfo _enemyInfo;
     public StageInfo _stageInfo;

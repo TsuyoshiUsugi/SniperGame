@@ -27,6 +27,7 @@ public class GameSceneManager : MonoBehaviour
 
     private void Start()
     {
+        _playScene = MissionInfoHolder.Instance.CurrentMission.MissionSceneName;
         _restart.onClick.AddListener(() => Restart());
         _missionTab.onClick.AddListener(() => ToMissionTab());
         _title.onClick.AddListener(() => ToTitleTab());

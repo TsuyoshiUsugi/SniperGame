@@ -72,13 +72,26 @@ public class EnemyBehavior : MonoBehaviour
         {
             _body.transform.rotation = Quaternion.LookRotation(diff);
 
-            _animator.SetBool("Walking", true);
+            DoMoveAnim(true);
         }
         else
         {
-            _animator.SetBool("Walking", false);
+            DoMoveAnim(false);
         }
     }   
+
+    protected void DoMoveAnim(bool onOff)
+    {
+        if (_enemyState == EnemyState.Normal)
+        {
+            _animator.SetBool("Walking", onOff);
+        }
+        else if(_enemyState == EnemyState.HighAlert)
+        {
+            if(_animator.GetBool("Running")) _animator.SetBool("Running", onOff);
+        }
+        
+    }
 
     /// <summary>
     /// 指定した地点に到達したらインデックスを進める
