@@ -14,6 +14,8 @@ public class TempSniperRifle : MonoBehaviour, IUse
     [SerializeField] protected GameObject _bullet;
     [SerializeField] CinemachineVirtualCamera _cam;
     [SerializeField] Text _currentMagNumText;
+    [SerializeField] protected AudioClip _shot;
+    protected AudioSource _audioSource;
 
     [Header("ê›íËíl")]
     [SerializeField] protected float _speed = 500;
@@ -35,6 +37,8 @@ public class TempSniperRifle : MonoBehaviour, IUse
         }
         Assert.IsNotNull(_muzzle);
         Assert.IsNotNull(_bullet);
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -55,6 +59,7 @@ public class TempSniperRifle : MonoBehaviour, IUse
         if (_coolTime) return;
         if (_currentMagNum.Value == 0) return;
         _currentMagNum.Value--;
+        _audioSource.PlayOneShot(_shot);
 
         var bulletRb = Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation)?.GetComponent<Rigidbody>();
         if (_cam == null) return;

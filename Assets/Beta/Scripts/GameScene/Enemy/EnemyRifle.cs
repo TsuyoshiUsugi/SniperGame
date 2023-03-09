@@ -8,10 +8,12 @@ public class EnemyRifle : TempSniperRifle
     [SerializeField] Vector3 _dir = new();
     [SerializeField] GameObject _player;
     [SerializeField] int _randomRange = 1;
+    
 
     private void Start()
     {
         _player = FindObjectOfType<PlayerCamControlManager>().gameObject;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public override void Use()
@@ -26,6 +28,7 @@ public class EnemyRifle : TempSniperRifle
     {
         var bulletRb = Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation)?.GetComponent<Rigidbody>();
         bulletRb.AddForce(_dir * _speed, ForceMode.Impulse);
+        _audioSource.PlayOneShot(_shot);
         
     }
 }
