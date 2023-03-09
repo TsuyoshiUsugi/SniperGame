@@ -28,9 +28,14 @@ public class GameSceneManager : MonoBehaviour
     private void Start()
     {
         _playScene = MissionInfoHolder.Instance.CurrentMission.MissionSceneName;
-        _restart.onClick.AddListener(() => Restart());
+        _restart.onClick.AddListener(() => ReStart());
         _missionTab.onClick.AddListener(() => ToMissionTab());
         _title.onClick.AddListener(() => ToTitleTab());
+    }
+
+    private void Update()
+    {
+        ReloadScene();
     }
 
     /// <summary>
@@ -99,7 +104,7 @@ public class GameSceneManager : MonoBehaviour
         _scoreView.SetScoreView();
     }
 
-    void Restart()
+    void ReStart()
     {
         SceneManager.LoadScene(_playScene);
     }
@@ -120,5 +125,14 @@ public class GameSceneManager : MonoBehaviour
     void Pose()
     {
 
+    }
+
+    void ReloadScene()
+    {
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            Scene thisScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(thisScene.name);
+        }
     }
 }

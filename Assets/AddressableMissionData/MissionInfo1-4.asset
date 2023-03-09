@@ -16,9 +16,9 @@ MonoBehaviour:
   MissionSceneName: GameScene04
   _targetInfos:
   - _targetName: "\u30B5\u30E0\u30FB\u30CF\u30EA\u30E0"
-    _targetImage: {fileID: 21300000, guid: 5f1d5c2824b75ba47ac351c486c844d0, type: 3}
+    _targetImage: {fileID: 21300000, guid: e44997081ad63ae4d948822b58acd205, type: 3}
     _mapImage: {fileID: 21300000, guid: 338e06058d90e49429409e41ecad91d5, type: 3}
-    _targetInfo: "\u76EE\u6A19\u306F\u79FB\u52D5\u3057\u3066\u3044\u308B\u3002\u3088\u304F\u72D9\u3044\u3001\u6392\u9664\u3057\u308D"
+    _targetInfo: "\u76EE\u6A19\u306F\u8ECA\u306B\u4E57\u3063\u3066\u3044\u308B\u3002\u7A93\u8D8A\u3057\u306B\u72D9\u3048"
     _targetMovePoints: {x: 0, y: 0, z: 0}
   _stageInfo:
     _stageIndex: 3
