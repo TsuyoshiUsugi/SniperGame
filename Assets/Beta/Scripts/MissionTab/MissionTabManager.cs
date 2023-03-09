@@ -26,7 +26,7 @@ public class MissionTabManager : MonoBehaviour
     void Awake()
     {
         GenerateMissionButton();
-        ShowInfo(1);
+        ShowInfo(0);
     }
 
     /// <summary>
@@ -40,7 +40,8 @@ public class MissionTabManager : MonoBehaviour
             missionButton.GetComponentInChildren<Text>().text = _missionDataList[i].MissionName;
             missionButton.transform.SetParent(_buttonAnker.transform);
             Debug.Log(i);
-            missionButton.GetComponent<Button>().onClick.AddListener(() => ShowInfo(i));
+            int num = i;
+            missionButton.GetComponent<Button>().onClick.AddListener(() => ShowInfo(num));
         }
     }
 
@@ -49,13 +50,18 @@ public class MissionTabManager : MonoBehaviour
     /// </summary>
     void ShowInfo(int index)
     {
+        
         //_mapImage.sprite = info._stageInfo. <= map画像を表示する関数
         //_targetImage.sprite = info._targetInfos[0].TargetImage;
-        int num = index - 1;
+        int num = index;
+
+        Debug.Log(num);
         _targetName.text = $"名前：{_missionDataList[num]._targetInfos[0].TargetName}";
         _targetInfo.text = $"詳細：{ _missionDataList[num]._targetInfos[0].TargetInfomation}";
         _highScoreText.text = $"ハイスコア：{_missionDataList[num].HighScore}";
         MissionInfoHolder.Instance.CurrentMission = _missionDataList[num];
+
+        Debug.Log("押された" + _missionDataList[num]);
     }
 }
 

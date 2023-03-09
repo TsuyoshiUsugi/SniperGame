@@ -11,10 +11,22 @@ public class MissionTabView : MonoBehaviour
 {
     [Header("ŽQÆ")]
     [SerializeField] Button _standByButton;
-    [SerializeField] string _GameSceneName;
+
+    [Header("Ý’è’l")]
+    [SerializeField] string _gameSceneName;
+    public string GameSceneName { get => _gameSceneName; set => _gameSceneName = value; }
+
+    MissionInfoHolder _missionInfoHolder;
 
     private void Start()
     {
-        _standByButton.onClick.AddListener(() => SceneManager.LoadScene(_GameSceneName));
+        _standByButton.onClick.AddListener(() => SceneManager.LoadScene(_gameSceneName));
+        _missionInfoHolder = FindObjectOfType<MissionInfoHolder>();
     }
+
+    private void Update()
+    {
+        _gameSceneName = _missionInfoHolder.CurrentMission.MissionSceneName;
+    }
+
 }
