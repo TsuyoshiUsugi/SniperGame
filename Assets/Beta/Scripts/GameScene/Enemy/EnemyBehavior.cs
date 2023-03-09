@@ -68,7 +68,7 @@ public class EnemyBehavior : MonoBehaviour
         var diff = transform.position - _latestPos;
         _latestPos = transform.position;
 
-        if(diff.magnitude > 0.01f)
+        if(diff.magnitude > 0.0001f)
         {
             _body.transform.rotation = Quaternion.LookRotation(diff);
 

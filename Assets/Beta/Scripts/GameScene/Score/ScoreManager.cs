@@ -102,14 +102,16 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
         _isDetected = true;
     }
 
+    /// <summary>
+    /// 今回のスコアがハイスコアか比較する
+    /// </summary>
     void CompareScore()
     {
         var savePath = Application.persistentDataPath + "/saveRecord.json";
-
-        SaveHighScoreData loadData;
-        loadData = LoadData(savePath);
+        SaveHighScoreData loadData = LoadData(savePath);
 
         var recordString = loadData.ScoreRecord.Split(","); //配列は0:1223,1:2222というようになっている
+
         var preHighScore = 0;
         var registerRecord = "";
 

@@ -70,7 +70,8 @@ public class MissionTabManager : MonoBehaviour
         if (File.Exists(savePath) == false)
         {
             GenarateSaveFile(savePath);
-            Debug.Log("セーブデータがなかったので生成");        }
+            Debug.Log("セーブデータがなかったので生成");
+        }
 
         using (StreamReader streamReader = new(savePath))
         {
@@ -78,7 +79,7 @@ public class MissionTabManager : MonoBehaviour
             loadData = JsonUtility.FromJson<SaveHighScoreData>(loadJson);
         }
 
-        var recordString = loadData.ScoreRecord.Split(","); //配列は0:1223,1:2222というようになっている
+        var recordString = loadData.ScoreRecord.Split(","); //配列は"0:1223","1:2222"というようになっている
 
         foreach (var str in recordString)
         {
