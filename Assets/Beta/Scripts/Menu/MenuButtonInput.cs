@@ -26,15 +26,10 @@ public class MenuButtonInput : MonoBehaviour
     void Start()
     {
         _missionButton.onClick.AddListener(() => OnMissionButtonClicked());
-        _equipmentButton.onClick.AddListener(() => OnEquipmentButtonClicked());
-        _developButton.onClick.AddListener(() => OnDevelopButtonClicked());
-        _rankingButton.onClick.AddListener(() => OnRankingButtonClicked());
-        _noneButton.onClick.AddListener(() => OnNoneButtonClicked());
+        //_equipmentButton.onClick.AddListener(() => OnEquipmentButtonClicked());
+        //_developButton.onClick.AddListener(() => OnDevelopButtonClicked());
+        //_rankingButton.onClick.AddListener(() => OnRankingButtonClicked());
+        //_noneButton.onClick.AddListener(() => OnNoneButtonClicked());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

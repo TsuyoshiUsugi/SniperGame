@@ -20,13 +20,14 @@ public class MissionTabView : MonoBehaviour
 
     private void Start()
     {
-        _standByButton.onClick.AddListener(() => SceneManager.LoadScene(_gameSceneName));
+        _standByButton.onClick.AddListener(() => MoveToPlayScene());
         _missionInfoHolder = FindObjectOfType<MissionInfoHolder>();
     }
 
-    private void Update()
+    void MoveToPlayScene()
     {
         _gameSceneName = _missionInfoHolder.CurrentMission.MissionSceneName;
+        SceneManager.LoadScene(_gameSceneName);
     }
 
 }
