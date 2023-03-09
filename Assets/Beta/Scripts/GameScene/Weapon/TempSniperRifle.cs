@@ -14,6 +14,7 @@ public class TempSniperRifle : MonoBehaviour, IUse
     [SerializeField] protected GameObject _bullet;
     [SerializeField] CinemachineVirtualCamera _cam;
     [SerializeField] Text _currentMagNumText;
+    [SerializeField] Text _relodingText;
     [SerializeField] protected AudioClip _shot;
     protected AudioSource _audioSource;
 
@@ -38,6 +39,7 @@ public class TempSniperRifle : MonoBehaviour, IUse
         Assert.IsNotNull(_muzzle);
         Assert.IsNotNull(_bullet);
 
+        if(_relodingText) _relodingText.gameObject.SetActive(false);
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -82,7 +84,9 @@ public class TempSniperRifle : MonoBehaviour, IUse
     {
         if (_currentMagNum.Value == _maxMagNum) yield break;
         _currentMagNum.Value = 0;
+        _relodingText.gameObject.SetActive(true);
         yield return new WaitForSeconds(_reloadTime);
+        _relodingText.gameObject.SetActive(false);
         _currentMagNum.Value = _maxMagNum;
     }
 }

@@ -115,7 +115,8 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
 
         for (int i = 0; i < recordString.Length; i++)
         {
-            if (!recordString[i].StartsWith(MissionInfoHolder.Instance.CurrentMission.StageNum.ToString())) return;
+            Debug.Log(recordString.Length);
+            if (!recordString[i].StartsWith(MissionInfoHolder.Instance.CurrentMission.StageNum.ToString())) continue;
 
             var strNum = recordString[i].Split(":");
             preHighScore = int.Parse(strNum[1]);
@@ -125,7 +126,7 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
 
             var newRecord = strNum[0] + ":" + strNum[1];
 
-            for (int j = 0; j <= recordString.Length - 2; j++)
+            for (int j = 0; j <= recordString.Length - 1; j++)
             {
                 if(j == 0 && i == j)
                 {
