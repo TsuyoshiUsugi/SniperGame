@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,6 +62,12 @@ public class PlayerCamControlManager : MonoBehaviour
             _playerCam.Priority = 1;
         }
 
+    }
+
+    private void OnDisable()
+    {
+        Action<bool> disPoseEvent = (isPressed) => Aim(isPressed);
+        _inputManager.OnAimButtonDownEvent -= disPoseEvent;
     }
 
 }

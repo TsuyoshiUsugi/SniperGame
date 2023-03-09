@@ -28,8 +28,8 @@ public class InputManager : MonoBehaviour
         //‚±‚±‚©‚çƒCƒxƒ“ƒg“o˜^
         //_inputActions.UI.AnyButtonDown.performed += context => { OnAnyButtonDownEvent.Invoke(); };
 
-        _inputActions.Player.Move.performed += context =>  { _moveDir = context.ReadValue<Vector2>(); };
-        _inputActions.Player.Move.canceled += context =>  { _moveDir = new Vector2(0,0); };
+        _inputActions.Player.Move.performed += context => { _moveDir = context.ReadValue<Vector2>(); };
+        _inputActions.Player.Move.canceled += context => { _moveDir = new Vector2(0, 0); };
 
         _inputActions.Player.Look.performed += context => { _camDir = context.ReadValue<Vector2>(); };
         _inputActions.Player.Look.canceled += context => { _camDir = new Vector2(0, 0); };
@@ -37,5 +37,13 @@ public class InputManager : MonoBehaviour
         _inputActions.Player.Aim.started += context => { OnAimButtonDownEvent.Invoke(true); };
         _inputActions.Player.Aim.canceled += contex => { OnAimButtonDownEvent.Invoke(false); };
         _inputActions.Player.Fire.started += context => { OnFireButttonDownEvent.Invoke(); };
+    }
+
+    public void DisposeEvent()
+    {
+        Action<bool> a() => OnAimButtonDownEvent;
+        Action b() => OnFireButttonDownEvent;
+        _inputActions.Player.Aim.started -= context => a();
+        _inputActions.Player.Fire.started -= context => b();
     }
 }

@@ -67,7 +67,7 @@ public class GameSceneManager : MonoBehaviour
     {
         TurnOffEnemyBehavior();
 
-        FindObjectOfType<PlayerManager>().StopPlaerInput();
+        FindObjectOfType<PlayerManager>().StopPlayerInput();
 
         Debug.Log("ÉNÉäÉA");
         _gameUIManager.UnlockCursor();
@@ -90,7 +90,7 @@ public class GameSceneManager : MonoBehaviour
     /// </summary>
     public void Failed()
     {
-        FindObjectOfType<PlayerManager>().StopPlaerInput();
+        FindObjectOfType<PlayerManager>().StopPlayerInput();
 
         TurnOffEnemyBehavior();
         ScoreManager.Instance.Fail();

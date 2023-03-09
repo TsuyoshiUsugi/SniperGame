@@ -11,9 +11,11 @@ public class PlayerManager : MonoBehaviour
     GameSceneManager _gameSceneManager;
     PlayerCamControlManager _playerCamControlManager;
     PlayerAction _playerAction;
+    InputManager _inputManager;
 
     private void Start()
     {
+        _inputManager = FindObjectOfType<InputManager>();
         _gameSceneManager = FindObjectOfType<GameSceneManager>();
         _playerCamControlManager = FindObjectOfType<PlayerCamControlManager>();
         _playerAction = FindObjectOfType<PlayerAction>();
@@ -31,7 +33,8 @@ public class PlayerManager : MonoBehaviour
         if (_hp <= 0)
         {
             _gameSceneManager.Failed();
-            StopPlaerInput();
+            StopPlayerInput();
+            
 
             GetComponentInChildren<Animator>().SetBool("Die", true);
             var playerIK = GetComponentsInChildren<IIKOff>();
@@ -45,9 +48,9 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void StopPlaerInput()
+    public void StopPlayerInput()
     {
+
         _playerCamControlManager.enabled = false;
-        _playerAction.enabled = false;
     }
 }

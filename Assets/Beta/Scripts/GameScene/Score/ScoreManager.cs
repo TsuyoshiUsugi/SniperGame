@@ -13,7 +13,7 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
     public int Score => _score;
 
     public readonly int ClearScore = +10000;
-    public readonly int FailScore = -99999;
+    public readonly int FailScore = 0;
     public readonly int KillScore = -100;
     public readonly int DetectedScore = -3000;
     public readonly int TimeScoreBonusScore = -100;
@@ -73,6 +73,7 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
         _score += ClearScore;
         CompareScore();
         Debug.Log(ScoreRank());
+        this.enabled = false;
     }
 
     public int TimeScoreBonus(float time)
@@ -85,6 +86,7 @@ public class ScoreManager : SingletonMonobehavior<ScoreManager>
     {
         _missionFailed = true;
         _score += FailScore;
+        this.enabled = false;
     }
 
     public void Kill()

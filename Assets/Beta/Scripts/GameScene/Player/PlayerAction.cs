@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,12 @@ public class PlayerAction : MonoBehaviour
     {
         if (!_holdItem) return;
         _holdItem?.GetComponent<IUse>().Use();
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("aaa");
+        _inputManager.DisposeEvent();
     }
 
 }
