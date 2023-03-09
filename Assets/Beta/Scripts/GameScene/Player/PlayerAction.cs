@@ -32,7 +32,6 @@ public class PlayerAction : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("aaa");
         _inputManager.DisposeEvent();
     }
 

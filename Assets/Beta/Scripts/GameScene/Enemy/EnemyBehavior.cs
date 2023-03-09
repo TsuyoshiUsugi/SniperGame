@@ -23,8 +23,8 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] protected List<Vector3> _movePoints = new();
     public List<Vector3> MovePoints => _movePoints;
 
-    int _movePointIndex;
-    Vector3 _latestPos;
+    protected int _movePointIndex;
+    protected Vector3 _latestPos;
 
     Vector3 _velocity = Vector3.zero;
 

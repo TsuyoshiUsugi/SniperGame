@@ -10,13 +10,14 @@ public class HighAlertEnemyBehavior : EnemyBehavior
     [SerializeField] float _shootSpan = 5;
     [SerializeField] GameObject _holdItem;
     [SerializeField] Vector3 _horiOffset;
+    
 
     // Start is called before the first frame update
     private void Start()
     {
+        _animator = GetComponentInChildren<Animator>();
         if (_coward) return;
 
-        _animator = GetComponentInChildren<Animator>();
         _animator.SetBool("Crouch", true);
         RotateTowardToPlayer();
         Shoot();
@@ -30,8 +31,23 @@ public class HighAlertEnemyBehavior : EnemyBehavior
 
             RotateObj();
 
+            RunAnim();
+
             SlideIndex();
+
+            if(_movePointIndex >= _movePoints.Count - 1)
+            {
+                FindObjectOfType<GameSceneManager>().Failed();
+            }
         }
+    }
+
+    void RunAnim()
+    {
+        
+            _animator.SetBool("Running", true);
+        
+    
     }
 
     void RotateTowardToPlayer()

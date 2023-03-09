@@ -58,8 +58,8 @@ public class EnemyManager : MonoBehaviour
                 break;
 
             case EnemyState.Death:
-                _normalEnemyMove.enabled = false;
-                _highAlertEnemyMove.enabled = false;
+                Destroy(_normalEnemyMove);
+                Destroy(_highAlertEnemyMove);
                 Death();
                 break;
         }
