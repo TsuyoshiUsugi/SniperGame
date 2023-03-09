@@ -37,6 +37,9 @@ public class MissionInfo : ScriptableObject
 
         [SerializeField] Sprite _targetImage;
         public Sprite TargetImage => _targetImage;
+        
+        [SerializeField] Sprite _mapImage;
+        public Sprite MapImage => _mapImage;
 
         [SerializeField] string _targetInfo;
         public String TargetInfomation => _targetInfo;

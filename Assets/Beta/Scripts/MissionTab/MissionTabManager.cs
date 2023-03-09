@@ -50,10 +50,10 @@ public class MissionTabManager : MonoBehaviour
     /// </summary>
     void ShowInfo(int index)
     {
-        
-        //_mapImage.sprite = info._stageInfo. <= map画像を表示する関数
-        //_targetImage.sprite = info._targetInfos[0].TargetImage;
+
         int num = index;
+        _targetImage.sprite = _missionDataList[num]._targetInfos[0].TargetImage;
+        _mapImage.sprite = _missionDataList[num]._targetInfos[0].MapImage;
         _targetName.text = $"名前：{_missionDataList[num]._targetInfos[0].TargetName}";
         _targetInfo.text = $"詳細：{ _missionDataList[num]._targetInfos[0].TargetInfomation}";
 
@@ -70,8 +70,7 @@ public class MissionTabManager : MonoBehaviour
         if (File.Exists(savePath) == false)
         {
             GenarateSaveFile(savePath);
-            Debug.Log("セーブデータがなかったので生成");
-        }
+            Debug.Log("セーブデータがなかったので生成");        }
 
         using (StreamReader streamReader = new(savePath))
         {
