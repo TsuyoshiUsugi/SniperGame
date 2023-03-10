@@ -670,6 +670,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ddf7bded03e360c4394b266825d164db, type: 2}
   - {fileID: 11400000, guid: 82d8b0cf5923af64b8cc7fbcac8d9d4c, type: 2}
   - {fileID: 11400000, guid: 43e2a8f1339e37e48b305d9a96961217, type: 2}
+  - {fileID: 11400000, guid: 1517cd01f86c4bc43a564e7ae7e27ce9, type: 2}
   _missionButtonPrefab: {fileID: 2604348496922065367, guid: ac3986b582887894fa92d9d5688c94d7, type: 3}
   _buttonAnker: {fileID: 64909467}
   _mapImage: {fileID: 1751772957}
